@@ -9,6 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@tsconfig/node18": "^18.2.4",
+    "@types/node": "^20.12.8",
     "ts-node": "^10.9.2",
     "typescript": "^5.4.5"
   }
