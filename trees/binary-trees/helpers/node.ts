@@ -5,7 +5,7 @@ export interface TreeNode<T> {
   right?: Nullable<TreeNode<T>>
 }
 
-export const createTreeNode = <T>(value?: T): Nullable<TreeNode<T>> => (value ? {value}: null)
+export const createTreeNode = <T>(value?: T): Nullable<TreeNode<T>> => (value !== undefined && value !== null ? {value}: null)
 
 export function createTree<T>(values: T[]): TreeNode<T> {
   const root: TreeNode<T> = createTreeNode(values.shift()) as TreeNode<T>;
