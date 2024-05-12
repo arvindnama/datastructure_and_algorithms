@@ -3,7 +3,7 @@
  */
 
 
-import { ListNode, createList, printList } from './helper/node';
+import { ListNode, createList, printList } from '../../models/linked-list.models';
 
 
 function getNthNodeFromEnd<T>(head: Nullable<ListNode<T>>, n: number) : Nullable<T> {

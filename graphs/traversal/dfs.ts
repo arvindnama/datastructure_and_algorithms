@@ -1,4 +1,4 @@
-import { Graph, NodeVisited } from "../helpers/node";
+import { Graph, NodeVisited } from "../../models/graph.models";
 
 
 function dfsTraversal(g: Graph<number>, startNode: number): number[] {

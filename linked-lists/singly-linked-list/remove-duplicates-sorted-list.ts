@@ -1,4 +1,4 @@
-import { ListNode, createList, printList } from "./helper/node";
+import { ListNode, createList, printList } from "../../models/linked-list.models";
 
 
 function removeDuplicates(head: Nullable<ListNode<number>>): Nullable<ListNode<number>> {

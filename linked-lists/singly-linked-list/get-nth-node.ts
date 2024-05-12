@@ -2,7 +2,7 @@
  * Write a function to get Nth node in a Linked List
  */
 
-import { ListNode, printList, createList } from './helper/node';
+import { ListNode, printList, createList } from '../../models/linked-list.models';
 
 function printNthNode<T>(head: Nullable<ListNode<T>>, n: number): Nullable<T> {
   if(!head) return null;

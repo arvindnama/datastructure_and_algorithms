@@ -2,7 +2,7 @@
  * Given a singly linked list, The task is to rotate the linked list counter-clockwise by k nodes.
  */
 
-import { ListNode, createList, printList } from "./helper/node";
+import { ListNode, createList, printList } from "../../models/linked-list.models";
 
 function rotateList(head: Nullable<ListNode<number>>, k : number): Nullable<ListNode<number>>{
   if(!head) return head;

@@ -2,7 +2,7 @@
  * Given a 2-D array of order N x N, print a matrix that is the mirror of the given tree across the diagonal. We need to print the result in a way: swap the values of the triangle above the diagonal with the values of the triangle below it like a mirror image swap. Print the 2-D array obtained in a matrix layout.
  */
 
-import { Coordinates, Matrix } from "./helpers/models";
+import { Coordinates, Matrix } from "../models/matrix.models";
 
 
 function swapAcrossDiagonal(matrix: Matrix) {

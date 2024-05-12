@@ -2,7 +2,7 @@
  * Given an undirected graph and a set of vertices, we have to print all the non-reachable nodes from the given head node using a breadth-first search.
  */
 
-import { Graph, NodeVisited } from "./helpers/node";
+import { Graph, NodeVisited } from "../models/graph.models";
 
 function findAllUnreachableNodes<T extends number | string>(graph: Graph<T>, start: T): T[] {
 

@@ -2,7 +2,7 @@
  * Given a directed graph, a source vertex ‘src’ and a destination vertex ‘dst’, print all paths from given ‘src’ to ‘dst’
  */
 
-import { Graph, NodeVisited } from "./helpers/node";
+import { Graph, NodeVisited } from "../models/graph.models";
 
 function findAllPaths<T extends number | string>(graph: Graph<T>, src: T, dest: T) {
 

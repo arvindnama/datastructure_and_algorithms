@@ -4,7 +4,7 @@
  */
 
 
-import {ListNode , createList, printList} from './helper/node';
+import {ListNode , createList, printList} from '../../models/linked-list.models';
 
 function lengthOfListItr<T>(head: Nullable<ListNode<T>>): number {
   let length = 0;

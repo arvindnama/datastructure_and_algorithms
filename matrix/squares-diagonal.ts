@@ -2,7 +2,7 @@
  * You have given an integer matrix with odd dimensions. Find the square of the diagonal elements on both sides.
  */
 
-import { Matrix } from "./helpers/models";
+import { Matrix } from "../models/matrix.models";
 
 function findSqrOfDiagonals(matrix: Matrix) {
 

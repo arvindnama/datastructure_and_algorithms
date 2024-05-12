@@ -1,4 +1,4 @@
-import { Graph, NodeVisited } from "../helpers/node";
+import { Graph, NodeVisited } from "../../models/graph.models";
 
 function bfsTraversal(graph: Graph<number>, start: number) {
 
