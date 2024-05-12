@@ -1,4 +1,4 @@
-import { ListNode, NullableNumListNode, NumListNode, createList, printList } from "../singly-linked-list/helper/node";
+import { ListNode, NullableNumListNode, NumListNode, createList, printList } from "../../models/linked-list.models";
 
 
 function deleteFromCircularList(head: NullableNumListNode, k: number){

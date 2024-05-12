@@ -6,7 +6,7 @@ After a given node.
 At the end of the linked list.
  */
 
-import { ListNode, printList, createList } from "./helper/node";
+import { ListNode, printList, createList } from "../../models/linked-list.models";
 
 
 function insertAtFront<T>(node: Nullable<ListNode<T>>, newVal: T): ListNode<T> {

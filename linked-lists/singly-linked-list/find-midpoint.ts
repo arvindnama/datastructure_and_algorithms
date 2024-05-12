@@ -1,4 +1,4 @@
-import { ListNode, createList } from "./helper/node"
+import { ListNode, createList } from "../../models/linked-list.models"
 
 
 function findMidpoint(start: Nullable<ListNode<number>>) {

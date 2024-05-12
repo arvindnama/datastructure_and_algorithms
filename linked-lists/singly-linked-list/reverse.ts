@@ -2,7 +2,7 @@
  * Given a pointer to the head node of a linked list, the task is to reverse the linked list. We need to reverse the list by changing the links between nodes.
  */
 
-import {ListNode, printList, createList} from './helper/node';
+import {ListNode, printList, createList} from '../../models/linked-list.models';
 
 function reverseListItr<T>(head: Nullable<ListNode<T>>): Nullable<ListNode<T>> {
 

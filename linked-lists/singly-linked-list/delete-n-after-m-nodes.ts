@@ -1,4 +1,4 @@
-import { ListNode, createList, printList } from "./helper/node";
+import { ListNode, createList, printList } from "../../models/linked-list.models";
 
 function deleteNAfterMNodes(head: Nullable<ListNode<number>>, m: number, n: number): Nullable<ListNode<number>> {
 

@@ -2,7 +2,7 @@
  * Given a Directed Graph and two vertices in it, check whether there is a path from the first given vertex to second.
  */
 
-import { Graph, NodeVisited } from "./helpers/node";
+import { Graph, NodeVisited } from "../models/graph.models";
 
 
 function bfsPathExists(graph: Graph<number>, s: number, e: number): boolean {

@@ -2,7 +2,7 @@
  * Given a square matrix, swap the element of major and minor
  */
 
-import { Matrix, Coordinates } from "./helpers/models";
+import { Matrix, Coordinates } from "../models/matrix.models";
 
 function swapDiagonals(matrix: Matrix) {
 

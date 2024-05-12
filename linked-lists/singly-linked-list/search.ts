@@ -4,7 +4,7 @@
  * Given a linked list and a key ‘X‘ in, the task is to check if X is present in the linked list or not. 
  */
 
-import {ListNode, createList, printList} from './helper/node'
+import {ListNode, createList, printList} from '../../models/linked-list.models'
 
 function searchItr<T>(head: Nullable<ListNode<T>>, key: T): boolean {
   while(head && head.value !== key) {

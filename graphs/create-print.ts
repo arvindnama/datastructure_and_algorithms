@@ -1,4 +1,4 @@
-import { Graph } from "./helpers/node";
+import { Graph } from "../models/graph.models";
 
 const graph = new Graph(3, [
   ['a', 'b'],

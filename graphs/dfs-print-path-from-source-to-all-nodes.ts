@@ -1,4 +1,4 @@
-import { Graph, NodeVisited } from "./helpers/node";
+import { Graph, NodeVisited } from "../models/graph.models";
 
 
 function printPath(graph: Graph<number>, s:number, e: number): number[] {

@@ -1,4 +1,4 @@
-import { ListNode, createList, printList } from "./helper/node";
+import { ListNode, createList, printList } from "../../models/linked-list.models";
 
 
 function detectCircle<T>(start: Nullable<ListNode<T>>): boolean {

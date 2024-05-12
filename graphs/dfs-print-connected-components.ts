@@ -2,7 +2,7 @@
  * Given an undirected graph, the task is to print all the connected components line by line. 
  */
 
-import { Graph, NodeVisited } from "./helpers/node";
+import { Graph, NodeVisited } from "../models/graph.models";
 
 function printConnectedComponents<T extends number | string>(graph: Graph<T> ) {
 

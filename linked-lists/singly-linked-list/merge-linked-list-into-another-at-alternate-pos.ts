@@ -2,7 +2,7 @@
  * Merge a linked list into another linked list at alternate positions
  */
 
-import { ListNode, createList, printList } from "./helper/node";
+import { ListNode, createList, printList } from "../../models/linked-list.models";
 
 function merge(
   head1: Nullable<ListNode<number>>, 

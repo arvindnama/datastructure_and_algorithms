@@ -5,7 +5,7 @@
  * if any neighbor is of same color as it current node , it is not  then it is not bipartite.
  */
 
-import { Graph, NodeVisited } from "./helpers/node";
+import { Graph, NodeVisited } from "../models/graph.models";
 
 function isBipartiteGraph<T extends number | string >(graph:Graph<T>) {
   const start = graph.vertices[0];
