@@ -4,6 +4,9 @@ export interface ListNode<T> {
   next?: Nullable<ListNode<T>>;
 }
 
+export type NullableNumListNode = Nullable<ListNode<number>>;
+export type NumListNode = ListNode<number>;
+
 
 export function createList<T>(values: T[], allowCircular = false ): Nullable<ListNode<T>>{
   if(!values?.length) {
