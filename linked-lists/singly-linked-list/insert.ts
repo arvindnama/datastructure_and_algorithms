@@ -6,12 +6,12 @@ After a given node.
 At the end of the linked list.
  */
 
-import { Node, printList, createList } from "./helper/node";
+import { ListNode, printList, createList } from "./helper/node";
 
 
-function insertAtFront<T>(node: Nullable<Node<T>>, newVal: T): Node<T> {
+function insertAtFront<T>(node: Nullable<ListNode<T>>, newVal: T): ListNode<T> {
 
-  const newNode: Node<T> = {
+  const newNode: ListNode<T> = {
     value: newVal
   }
 
@@ -23,14 +23,14 @@ function insertAtFront<T>(node: Nullable<Node<T>>, newVal: T): Node<T> {
 
 }
 
-function insertAfterGivenNode<T>(head: Nullable<Node<T>>, node: Node<T>, newVal: T): Node<T> {
-  let prevPtr: Nullable<Node<T>>;
+function insertAfterGivenNode<T>(head: Nullable<ListNode<T>>, node: ListNode<T>, newVal: T): ListNode<T> {
+  let prevPtr: Nullable<ListNode<T>>;
   let ptr = head;
   while(ptr && ptr.value !== node.value) {
     prevPtr = ptr; // store previous pointer
     ptr = ptr.next;
   }
-  const newNode: Node<T> = {value: newVal};
+  const newNode: ListNode<T> = {value: newVal};
   if(ptr) {
     // found the insertion point
     const tmpNode = ptr.next;
@@ -44,14 +44,14 @@ function insertAfterGivenNode<T>(head: Nullable<Node<T>>, node: Node<T>, newVal:
     head = newNode;
   } else {
     // request node not found add to newNode to end of the list.
-    (prevPtr as Node<T>).next = newNode;
+    (prevPtr as ListNode<T>).next = newNode;
   }
 
-  return head as Node<T>;
+  return head as ListNode<T>;
 }
 
-function insertAtEnd<T>(head: Nullable<Node<T>>, newVal: T): Node<T> {
-  const newNode: Node<T> = {
+function insertAtEnd<T>(head: Nullable<ListNode<T>>, newVal: T): ListNode<T> {
+  const newNode: ListNode<T> = {
     value: newVal
   };
 
@@ -59,7 +59,7 @@ function insertAtEnd<T>(head: Nullable<Node<T>>, newVal: T): Node<T> {
     return newNode;
   }
 
-  let ptr: Node<T> = head;
+  let ptr: ListNode<T> = head;
   while(ptr.next){
     ptr = ptr.next;
   }

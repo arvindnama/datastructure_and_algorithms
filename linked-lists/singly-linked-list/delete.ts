@@ -3,14 +3,14 @@
  */
 
 
-import {Node, createList, printList} from './helper/node';
+import {ListNode, createList, printList} from './helper/node';
 
-function deleteNodeAtPos<T>(head: Nullable<Node<T>>, pos: number): Nullable<Node<T>> {
+function deleteNodeAtPos<T>(head: Nullable<ListNode<T>>, pos: number): Nullable<ListNode<T>> {
 
   if(!head) return head;
 
-  let prev: Nullable<Node<T>>;
-  let cur: Nullable<Node<T>> = head;
+  let prev: Nullable<ListNode<T>>;
+  let cur: Nullable<ListNode<T>> = head;
   let i = 0;
   while(cur && i !== pos) {
     prev = cur;

@@ -1,12 +1,12 @@
-import { Node, createList } from "./helper/node"
+import { ListNode, createList } from "./helper/node"
 
 
-function findMidpoint(start: Nullable<Node<number>>) {
-  let slow = start as Node<number>;
+function findMidpoint(start: Nullable<ListNode<number>>) {
+  let slow = start as ListNode<number>;
   let fast = start;
 
   while(fast?.next) {
-    slow = slow.next as Node<number>;
+    slow = slow.next as ListNode<number>;
     fast = fast.next?.next;
   }
   return slow.value;

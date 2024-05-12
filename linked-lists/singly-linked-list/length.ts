@@ -4,9 +4,9 @@
  */
 
 
-import {Node , createList, printList} from './helper/node';
+import {ListNode , createList, printList} from './helper/node';
 
-function lengthOfListItr<T>(head: Nullable<Node<T>>): number {
+function lengthOfListItr<T>(head: Nullable<ListNode<T>>): number {
   let length = 0;
   while(head) {
     head = head.next;
@@ -15,7 +15,7 @@ function lengthOfListItr<T>(head: Nullable<Node<T>>): number {
   return length;
 }
 
-function lengthOfListRec<T>(head: Nullable<Node<T>>): number {
+function lengthOfListRec<T>(head: Nullable<ListNode<T>>): number {
   if(!head) return 0;
 
   return 1 + lengthOfListRec(head.next);
