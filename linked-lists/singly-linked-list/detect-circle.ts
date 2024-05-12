@@ -15,10 +15,10 @@ function detectCircle<T>(start: Nullable<ListNode<T>>): boolean {
   return fastPtr === slowPtr;
 }
 
-let start = createList([1,2,3,4,5,1]);
-printList(start);
+let start = createList([1,2,3,4,5,1], true);
+printList(start, true);
 console.log('circle found', detectCircle(start));
 
-const start2 = createList([1,2,3,4,5]);
-printList(start2)
+const start2 = createList([1,2,3,4,5], true);
+printList(start2, true)
 console.log('circle found', detectCircle(start2));
