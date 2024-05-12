@@ -30,19 +30,19 @@ export function createList<T>(values: T[], allowCircular = false ): Nullable<Lis
 
 }
 
-export function printList<T>(node: Nullable<ListNode<T>>, additionalData ?: any) {
+export function printList<T>(node: Nullable<ListNode<T>>, allowCircular = false) {
   let ptr = node;
   const visited: Array<ListNode<T>> = []
   const values: T[] = [];
   while(ptr) {
     values.push(ptr.value);
-    if(visited.find(v => v.value === ptr?.value)){
+    if(allowCircular && visited.find(v => v.value === ptr?.value)){
       // circle , exit.
       break
     }
     visited.push(ptr);
     ptr = ptr.next;
   }
-  console.log(values.join('->'), additionalData)
+  console.log(values.join('->'))
 
 }
