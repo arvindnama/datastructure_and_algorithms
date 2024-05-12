@@ -2,14 +2,14 @@
  * Given a pointer to the head node of a linked list, the task is to reverse the linked list. We need to reverse the list by changing the links between nodes.
  */
 
-import {Node, printList, createList} from './helper/node';
+import {ListNode, printList, createList} from './helper/node';
 
-function reverseListItr<T>(head: Nullable<Node<T>>): Nullable<Node<T>> {
+function reverseListItr<T>(head: Nullable<ListNode<T>>): Nullable<ListNode<T>> {
 
   if(!head) return head;
 
-  let cur: Node<T> = head;
-  let nxt: Nullable<Node<T>> = head.next;
+  let cur: ListNode<T> = head;
+  let nxt: Nullable<ListNode<T>> = head.next;
 
 
   while(nxt){
@@ -25,8 +25,8 @@ function reverseListItr<T>(head: Nullable<Node<T>>): Nullable<Node<T>> {
 
 }
 
-function reverseListRec<T>(head: Nullable<Node<T>>): Nullable<Node<T>>{
-  const reverseInt = (prv: Nullable<Node<T>>, head: Nullable<Node<T>>): Nullable<Node<T>> => {
+function reverseListRec<T>(head: Nullable<ListNode<T>>): Nullable<ListNode<T>>{
+  const reverseInt = (prv: Nullable<ListNode<T>>, head: Nullable<ListNode<T>>): Nullable<ListNode<T>> => {
     if(!head) return null;
     if(!head.next) {
       head.next = prv

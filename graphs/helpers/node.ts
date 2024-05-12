@@ -2,8 +2,8 @@
 
 export type Vertex = {[key in string | number]: boolean};
 export type Edge<T extends number | string> = [T, T, number?];
-export type Node<T extends number | string> = { node: T, weight?: number}
-export type AdjacentList<T extends number | string> = {[k in string | number]: Array<Node<T>>};
+export type GraphNode<T extends number | string> = { node: T, weight?: number}
+export type AdjacentList<T extends number | string> = {[k in string | number]: Array<GraphNode<T>>};
 
 export type NodeVisited = {[key in number | string]: boolean};
 
@@ -33,7 +33,7 @@ export class Graph<T extends number | string> implements IGraph<T> {
     });
   }
 
-  public getAdjacentNodes(vertex: T) : Array<Node<T>> {
+  public getAdjacentNodes(vertex: T) : Array<GraphNode<T>> {
     return this.adjacentList[vertex];
   }
 

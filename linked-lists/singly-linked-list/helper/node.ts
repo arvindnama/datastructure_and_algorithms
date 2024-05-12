@@ -1,16 +1,16 @@
 
-export interface Node<T> {
+export interface ListNode<T> {
   value: T;
-  next?: Nullable<Node<T>>;
+  next?: Nullable<ListNode<T>>;
 }
 
 
-export function createList<T>(values: T[], allowCircular = false ): Nullable<Node<T>>{
+export function createList<T>(values: T[], allowCircular = false ): Nullable<ListNode<T>>{
   if(!values?.length) {
     return null;
   }
-  const first: Node<T> = { value: values[0] };
-  const store: Node<T>[] = [first];
+  const first: ListNode<T> = { value: values[0] };
+  const store: ListNode<T>[] = [first];
   let nodePtr = first;
   for(let i = 1; i < values.length; i++) {
     let node;
@@ -30,9 +30,9 @@ export function createList<T>(values: T[], allowCircular = false ): Nullable<Nod
 
 }
 
-export function printList<T>(node: Nullable<Node<T>>, additionalData ?: any) {
+export function printList<T>(node: Nullable<ListNode<T>>, additionalData ?: any) {
   let ptr = node;
-  const visited: Array<Node<T>> = []
+  const visited: Array<ListNode<T>> = []
   const values: T[] = [];
   while(ptr) {
     values.push(ptr.value);

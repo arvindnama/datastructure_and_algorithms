@@ -2,9 +2,9 @@
  * Write a function to get Nth node in a Linked List
  */
 
-import { Node, printList, createList } from './helper/node';
+import { ListNode, printList, createList } from './helper/node';
 
-function printNthNode<T>(head: Nullable<Node<T>>, n: number): Nullable<T> {
+function printNthNode<T>(head: Nullable<ListNode<T>>, n: number): Nullable<T> {
   if(!head) return null;
 
   let i = 0 ;
@@ -15,7 +15,7 @@ function printNthNode<T>(head: Nullable<Node<T>>, n: number): Nullable<T> {
   return head?.value ?? null;
 }
 
-function printNthNodeRec<T>(head: Nullable<Node<T>>, n: number): Nullable<T> {
+function printNthNodeRec<T>(head: Nullable<ListNode<T>>, n: number): Nullable<T> {
   if(n < 0 ) return null;
   if(n === 0 || !head) return head?.value ?? null;
   return printNthNodeRec(head.next, n - 1);

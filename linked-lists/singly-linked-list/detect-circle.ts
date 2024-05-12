@@ -1,7 +1,7 @@
-import { Node, createList, printList } from "./helper/node";
+import { ListNode, createList, printList } from "./helper/node";
 
 
-function detectCircle<T>(start: Nullable<Node<T>>): boolean {
+function detectCircle<T>(start: Nullable<ListNode<T>>): boolean {
 
 
   let slowPtr = start;

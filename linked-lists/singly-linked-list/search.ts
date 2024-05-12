@@ -4,9 +4,9 @@
  * Given a linked list and a key ‘X‘ in, the task is to check if X is present in the linked list or not. 
  */
 
-import {Node, createList, printList} from './helper/node'
+import {ListNode, createList, printList} from './helper/node'
 
-function searchItr<T>(head: Nullable<Node<T>>, key: T): boolean {
+function searchItr<T>(head: Nullable<ListNode<T>>, key: T): boolean {
   while(head && head.value !== key) {
     head = head.next;
   }
@@ -14,7 +14,7 @@ function searchItr<T>(head: Nullable<Node<T>>, key: T): boolean {
   return !!head;
 }
 
-function searchRecursive<T>(head: Nullable<Node<T>>, key:T): boolean {
+function searchRecursive<T>(head: Nullable<ListNode<T>>, key:T): boolean {
   if(!head) return false;
   if(head.value === key) return true;
 

@@ -3,14 +3,14 @@
  */
 
 
-import { Node, createList, printList } from './helper/node';
+import { ListNode, createList, printList } from './helper/node';
 
 
-function getNthNodeFromEnd<T>(head: Nullable<Node<T>>, n: number) : Nullable<T> {
+function getNthNodeFromEnd<T>(head: Nullable<ListNode<T>>, n: number) : Nullable<T> {
   if (!head) return null;
 
   let i = 0;
-  let nthPtr: Nullable<Node<T>> = head;
+  let nthPtr: Nullable<ListNode<T>> = head;
 
   // move nthPtr to nth from start.
   while(i < n && nthPtr) {
