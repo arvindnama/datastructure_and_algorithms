@@ -24,4 +24,3 @@ console.log(printLeaders(arr));
 arr = [1, 2, 3, 4, 5, 2];
 console.log('print leaders', arr);
 console.log(printLeaders(arr));
-console.log(printLeader(arr));
