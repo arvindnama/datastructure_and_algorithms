@@ -4,6 +4,7 @@
     "description": "",
     "scripts": {
         "lint": "eslint .",
+        "pretty": "prettier --write \"./**/*.{js,jsx,mjs,cjs,ts,tsx,json}\"",
         "ts": "ts-node"
     },
     "keywords": [],
