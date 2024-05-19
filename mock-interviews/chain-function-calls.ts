@@ -2,26 +2,25 @@
  * Write a magic function that chains n asynchronous tasks
  */
 
-/* eslint-disable  @typescript-eslint/no-explicit-any */
 
-type Task = (cb: any) => void;
+type Task = (cb?: Task) => void;
 
 const callbackToPromise = (task: Task): () => Promise<unknown> => () => new Promise(res => task(res));
 
-const f1: Task  = (cb) => {
+const f1 = (cb?: Task) => {
     setTimeout(() => {
         console.log('1');
         if(cb) cb();
     }, 1000);
 };
 
-const f2 = (cb: any) =>
+const f2 = (cb?: Task) =>
     setTimeout(() => {
         console.log('2');
         if(cb)  cb();
     }, 500);
 
-const f3 = (cb: any) =>
+const f3 = (cb?: Task) =>
     setTimeout(() => {
         console.log('3');
         if(cb) cb();
