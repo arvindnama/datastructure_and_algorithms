@@ -75,7 +75,7 @@ export function createDoublyLinkedList<T>(values: T[]): DoublyListNode<T> {
     return head;
 }
 
-export function printDoublyLinkedList<T>(head?: DoublyListNode<T>) {
+export function printDoublyLinkedList<T>(head: Nullable<DoublyListNode<T>>) {
     let node: Nullable<DoublyListNode<T>> = head;
     const values: T[] = [];
     while (node) {
