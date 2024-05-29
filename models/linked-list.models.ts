@@ -51,3 +51,36 @@ export function printList<T>(
     }
     console.log(values.join('->'));
 }
+
+export interface DoublyListNode<T> {
+    value: T;
+    next?: DoublyListNode<T>;
+    prev?: DoublyListNode<T>;
+}
+
+export function createDoublyLinkedList<T>(values: T[]): DoublyListNode<T> {
+    const head: DoublyListNode<T> = {
+        value: values[0],
+        prev: undefined,
+    };
+
+    for (let i = 1, node = head; i < values.length; i++) {
+        node.next = {
+            value: values[i],
+            prev: node,
+        };
+        node = node.next;
+    }
+
+    return head;
+}
+
+export function printDoublyLinkedList<T>(head?: DoublyListNode<T>) {
+    let node: Nullable<DoublyListNode<T>> = head;
+    const values: T[] = [];
+    while (node) {
+        values.push(node.value);
+        node = node.next;
+    }
+    console.log('Doubly linked list', values.join('<=>'));
+}
