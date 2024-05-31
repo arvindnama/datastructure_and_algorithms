@@ -58,6 +58,9 @@ export interface DoublyListNode<T> {
     prev?: DoublyListNode<T>;
 }
 
+export type NumDoublyListNode = DoublyListNode<number>;
+export type NullableNumDoublyListNode = DoublyListNode<number>;
+
 export function createDoublyLinkedList<T>(values: T[]): DoublyListNode<T> {
     const head: DoublyListNode<T> = {
         value: values[0],
