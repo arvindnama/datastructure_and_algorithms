@@ -127,3 +127,44 @@ export class MaxHeap extends Heap {
         }
     }
 }
+
+export class MinHeap extends Heap {
+    protected replacementValue: number = Number.MIN_VALUE;
+
+    protected heapifyBottomUp(node: number): void {
+        let i = node;
+        let parentIdx = this.getParentIdx(i);
+
+        while (i != 0 && this.array[i] < this.array[parentIdx]) {
+            [this.array[i], this.array[parentIdx]] = [
+                this.array[parentIdx],
+                this.array[i],
+            ];
+
+            i = parentIdx;
+            parentIdx = this.getParentIdx(i);
+        }
+    }
+
+    protected heapifyTopDown(node: number): void {
+        let min = node;
+        const lIdx = this.leftChildIdx(node);
+        const rIdx = this.rightChildIdx(node);
+
+        if (lIdx < this.heapSize && this.array[node] > this.array[lIdx]) {
+            min = lIdx;
+        }
+
+        if (lIdx < this.heapSize && this.array[node] > this.array[rIdx]) {
+            min = rIdx;
+        }
+
+        if (min !== node) {
+            [this.array[min], this.array[node]] = [
+                this.array[node],
+                this.array[min],
+            ];
+            this.heapifyTopDown(min);
+        }
+    }
+}
