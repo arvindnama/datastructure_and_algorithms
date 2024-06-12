@@ -1,18 +1,25 @@
+interface ObjectWithValue {
+    valueOf: () => number;
+}
+type HeapElement = number | string | ObjectWithValue;
+
 interface IHeap {
-    insert: (k: number) => void;
-    getTop: () => number;
-    removeTop: () => number;
-    removeAtIdx: (node: number) => number;
+    insert: (k: HeapElement) => void;
+    getTop: () => Nullable<HeapElement>;
+    removeTop: () => Nullable<HeapElement>;
+    removeAtIdx: (nodeIdx: number) => Nullable<HeapElement>;
+    heapify: (nodeIdx: number) => void;
     print: () => void;
     getMaxSize: () => number;
     getCurSize: () => number;
+    getHeapAsArray: () => Nullable<HeapElement>[];
 }
 
 abstract class Heap implements IHeap {
     protected maxSize: number;
-    protected array: Array<number>;
+    protected array: Array<Nullable<HeapElement>>;
     protected heapSize: number;
-    protected replacementValue: number = -1;
+    protected abstract replacementValue: HeapElement;
 
     constructor(size: number) {
         this.maxSize = size;
@@ -23,28 +30,35 @@ abstract class Heap implements IHeap {
      * Helper methods that will rearrange the heap from bottom up to root
      * to fix the heap properties (max or min)
      */
-    protected abstract heapifyBottomUp(node: number): void;
+    protected abstract fixPositionOfKeyAt(nodeIdx: number): void;
 
     /**
-     * Helper methods that will rearrange the heap from a given node to leaf
+     * Helper methods that will rearrange the heap from a given nodeIdx to leaf
      * and fixes the heap properties
      */
-    protected abstract heapifyTopDown(node: number): void;
+    public abstract heapify(nodeIdx: number): void;
 
-    protected getParentIdx(node: number): number {
-        // if node is event it is right child
-        return node % 2 === 0 ? (node - 2) / 2 : (node - 1) / 2;
+    protected getParentIdx(nodeIdx: number): number {
+        return Math.floor((nodeIdx - 1) / 2);
     }
 
-    protected leftChildIdx(node: number): number {
-        return 2 * node + 1;
+    protected leftChildIdx(nodeIdx: number): number {
+        return 2 * nodeIdx + 1;
     }
 
-    protected rightChildIdx(node: number): number {
-        return 2 * node + 2;
+    protected rightChildIdx(nodeIdx: number): number {
+        return 2 * nodeIdx + 2;
     }
 
-    public getTop(): number {
+    protected getEl(nodeIdx: number): HeapElement {
+        return this.array[nodeIdx] as HeapElement;
+    }
+
+    public getHeapAsArray(): Array<Nullable<HeapElement>> {
+        return this.array;
+    }
+
+    public getTop(): Nullable<HeapElement> {
         return this.array[0];
     }
 
@@ -60,7 +74,7 @@ abstract class Heap implements IHeap {
         console.log(this.array.slice(0, this.heapSize));
     }
 
-    public insert(k: number) {
+    public insert(k: HeapElement) {
         if (this.heapSize >= this.maxSize) {
             throw 'max size reached';
         }
@@ -69,73 +83,74 @@ abstract class Heap implements IHeap {
         this.array[this.heapSize - 1] = k;
 
         // rearrange from bottom
-        this.heapifyBottomUp(this.heapSize - 1);
+        this.fixPositionOfKeyAt(this.heapSize - 1);
     }
 
-    public removeTop(): number {
+    public removeTop(): Nullable<HeapElement> {
+        if (this.heapSize === 0) return null;
         const top = this.array[0];
         this.array[0] = this.array[this.heapSize - 1];
-        // this.array[this.heapSize - 1] = null;
+        this.array[this.heapSize - 1] = undefined;
 
         this.heapSize--;
-        this.heapifyTopDown(0);
+        this.heapify(0);
         return top;
     }
 
-    public removeAtIdx(node: number): number {
-        const val = this.array[node];
-        this.array[node] = this.replacementValue;
-        this.heapifyBottomUp(node);
+    public removeAtIdx(nodeIdx: number): Nullable<HeapElement> {
+        const val = this.array[nodeIdx];
+        this.array[nodeIdx] = this.replacementValue;
+        this.fixPositionOfKeyAt(nodeIdx);
         this.removeTop();
         return val;
     }
 }
 
 export class MaxHeap extends Heap {
-    protected replacementValue = Number.MAX_SAFE_INTEGER;
+    protected replacementValue: HeapElement = Number.MAX_SAFE_INTEGER;
 
-    protected heapifyBottomUp(node: number) {
-        let i = node;
+    protected fixPositionOfKeyAt(nodeIdx: number) {
+        let i = nodeIdx;
         let parentIdx = this.getParentIdx(i);
-        while (i != 0 && this.array[node] > this.array[parentIdx]) {
-            [this.array[node], this.array[parentIdx]] = [
+        while (i != 0 && this.getEl(i) >= this.getEl(parentIdx)) {
+            [this.array[i], this.array[parentIdx]] = [
                 this.array[parentIdx],
-                this.array[node],
+                this.array[i],
             ];
             i = parentIdx;
             parentIdx = this.getParentIdx(i);
         }
     }
 
-    protected heapifyTopDown(node: number) {
-        let max = node;
-        const lIdx = this.leftChildIdx(node);
-        const rIdx = this.rightChildIdx(node);
-        if (lIdx < this.heapSize && this.array[node] < this.array[lIdx]) {
+    public heapify(nodeIdx: number) {
+        let max = nodeIdx;
+        const lIdx = this.leftChildIdx(nodeIdx);
+        const rIdx = this.rightChildIdx(nodeIdx);
+        if (lIdx < this.heapSize && this.getEl(nodeIdx) < this.getEl(lIdx)) {
             max = lIdx;
         }
-        if (lIdx < this.heapSize && this.array[node] < this.array[rIdx]) {
+        if (lIdx < this.heapSize && this.getEl(max) < this.getEl(rIdx)) {
             max = rIdx;
         }
 
-        if (max !== node) {
-            [this.array[max], this.array[node]] = [
-                this.array[node],
+        if (max !== nodeIdx) {
+            [this.array[max], this.array[nodeIdx]] = [
+                this.array[nodeIdx],
                 this.array[max],
             ];
-            this.heapifyTopDown(max);
+            this.heapify(max);
         }
     }
 }
 
 export class MinHeap extends Heap {
-    protected replacementValue: number = Number.MIN_VALUE;
+    protected replacementValue: HeapElement = Number.MIN_VALUE;
 
-    protected heapifyBottomUp(node: number): void {
-        let i = node;
+    protected fixPositionOfKeyAt(nodeIdx: number): void {
+        let i = nodeIdx;
         let parentIdx = this.getParentIdx(i);
 
-        while (i != 0 && this.array[i] < this.array[parentIdx]) {
+        while (i != 0 && this.getEl(i) <= this.getEl(parentIdx)) {
             [this.array[i], this.array[parentIdx]] = [
                 this.array[parentIdx],
                 this.array[i],
@@ -146,25 +161,25 @@ export class MinHeap extends Heap {
         }
     }
 
-    protected heapifyTopDown(node: number): void {
-        let min = node;
-        const lIdx = this.leftChildIdx(node);
-        const rIdx = this.rightChildIdx(node);
+    public heapify(nodeIdx: number): void {
+        let min = nodeIdx;
+        const lIdx = this.leftChildIdx(nodeIdx);
+        const rIdx = this.rightChildIdx(nodeIdx);
 
-        if (lIdx < this.heapSize && this.array[node] > this.array[lIdx]) {
+        if (lIdx < this.heapSize && this.getEl(nodeIdx) > this.getEl(lIdx)) {
             min = lIdx;
         }
 
-        if (lIdx < this.heapSize && this.array[node] > this.array[rIdx]) {
+        if (lIdx < this.heapSize && this.getEl(min) > this.getEl(rIdx)) {
             min = rIdx;
         }
 
-        if (min !== node) {
-            [this.array[min], this.array[node]] = [
-                this.array[node],
+        if (min !== nodeIdx) {
+            [this.array[min], this.array[nodeIdx]] = [
+                this.array[nodeIdx],
                 this.array[min],
             ];
-            this.heapifyTopDown(min);
+            this.heapify(min);
         }
     }
 }
