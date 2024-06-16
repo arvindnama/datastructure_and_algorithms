@@ -4,6 +4,8 @@ export interface TreeNode<T> {
     right?: Nullable<TreeNode<T>>;
 }
 
+export type TreeNumNode = TreeNode<number>;
+
 export const createTreeNode = <T>(value?: T): Nullable<TreeNode<T>> =>
     value !== undefined && value !== null ? { value } : null;
 
