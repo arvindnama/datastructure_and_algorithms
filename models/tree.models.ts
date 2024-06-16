@@ -17,10 +17,12 @@ export function createTree<T>(values: T[]): TreeNode<T> {
         const nextVal1 = values.shift();
         const nextVal2 = values.shift();
         const node = queue.shift() as TreeNode<T>;
-        node.left = createTreeNode(nextVal1);
-        node.right = createTreeNode(nextVal2);
-        queue.push(node.left);
-        queue.push(node.right);
+        if (node) {
+            node.left = createTreeNode(nextVal1);
+            node.right = createTreeNode(nextVal2);
+            queue.push(node.left);
+            queue.push(node.right);
+        }
     }
     return root;
 }
