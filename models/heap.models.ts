@@ -129,7 +129,7 @@ export class MaxHeap extends Heap {
         if (lIdx < this.heapSize && this.getEl(nodeIdx) < this.getEl(lIdx)) {
             max = lIdx;
         }
-        if (lIdx < this.heapSize && this.getEl(max) < this.getEl(rIdx)) {
+        if (rIdx < this.heapSize && this.getEl(max) < this.getEl(rIdx)) {
             max = rIdx;
         }
 
@@ -170,7 +170,7 @@ export class MinHeap extends Heap {
             min = lIdx;
         }
 
-        if (lIdx < this.heapSize && this.getEl(min) > this.getEl(rIdx)) {
+        if (rIdx < this.heapSize && this.getEl(min) > this.getEl(rIdx)) {
             min = rIdx;
         }
 
