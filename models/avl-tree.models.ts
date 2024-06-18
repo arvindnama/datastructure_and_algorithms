@@ -1,4 +1,4 @@
-import { TreeNode, TreeNumNode } from './tree.models';
+import { TreeNode, TreeNumNode, printTree } from './tree.models';
 
 export interface AvlTreeNode<T> extends TreeNode<T> {
     height: number;
@@ -56,7 +56,7 @@ const rightRotate = (x: Nullable<TreeNumNode>): AvlNumTreeNode => {
     return y;
 };
 
-export function deleteFromAvl(
+function deleteFromAvl(
     root: Nullable<AvlNumTreeNode>,
     k: number
 ): Nullable<AvlNumTreeNode> {
@@ -141,7 +141,7 @@ export function deleteFromAvl(
     return root;
 }
 
-export function insertIntoAvl(
+function insertIntoAvl(
     root: Nullable<AvlNumTreeNode>,
     k: number
 ): AvlNumTreeNode {
@@ -197,4 +197,20 @@ export function insertIntoAvl(
         }
     }
     return root;
+}
+
+export class AvlTree {
+    #root: Nullable<AvlNumTreeNode> = null;
+
+    public insert(k: number) {
+        this.#root = insertIntoAvl(this.#root, k);
+    }
+
+    public delete(k: number) {
+        this.#root = deleteFromAvl(this.#root, k);
+    }
+
+    public print() {
+        printTree(this.#root);
+    }
 }
