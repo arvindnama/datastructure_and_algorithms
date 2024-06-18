@@ -1,7 +1,10 @@
 import { AvlNumTreeNode } from '../../../models/avl-tree.models';
 import { TreeNumNode, printTree } from '../../../models/tree.models';
 
-function insert(root: Nullable<AvlNumTreeNode>, k: number): AvlNumTreeNode {
+export function insertIntoAvl(
+    root: Nullable<AvlNumTreeNode>,
+    k: number
+): AvlNumTreeNode {
     const node = {
         value: k,
         height: 1,
@@ -52,9 +55,9 @@ function insert(root: Nullable<AvlNumTreeNode>, k: number): AvlNumTreeNode {
     };
 
     if (k < root.value) {
-        root.left = insert(root.left as Nullable<AvlNumTreeNode>, k);
+        root.left = insertIntoAvl(root.left as Nullable<AvlNumTreeNode>, k);
     } else if (k > root.value) {
-        root.right = insert(root.right as Nullable<AvlNumTreeNode>, k);
+        root.right = insertIntoAvl(root.right as Nullable<AvlNumTreeNode>, k);
     } else return root; // duplicate node , ignore insert
 
     // readjust the height of the current node (i.e root)
@@ -96,25 +99,25 @@ function insert(root: Nullable<AvlNumTreeNode>, k: number): AvlNumTreeNode {
 console.log('AVL Tree insert operation');
 
 console.log('insert 10');
-let root = insert(null, 10);
+let root = insertIntoAvl(null, 10);
 printTree(root);
 
 console.log('insert 20');
-root = insert(root, 20);
+root = insertIntoAvl(root, 20);
 printTree(root);
 
 console.log('insert 30');
-root = insert(root, 30);
+root = insertIntoAvl(root, 30);
 printTree(root);
 
-root = insert(root, 40);
+root = insertIntoAvl(root, 40);
 console.log('insert 40');
 printTree(root);
 
-root = insert(root, 50);
+root = insertIntoAvl(root, 50);
 console.log('insert 50');
 printTree(root);
 
-root = insert(root, 25);
+root = insertIntoAvl(root, 25);
 console.log('insert 25');
 printTree(root);
