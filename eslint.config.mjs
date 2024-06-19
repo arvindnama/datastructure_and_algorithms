@@ -13,6 +13,7 @@ export default [
         },
         rules: {
             'no-sparse-arrays': 'off',
+            '@typescript-eslint/no-explicit-any': 'off',
         },
     },
 ];
