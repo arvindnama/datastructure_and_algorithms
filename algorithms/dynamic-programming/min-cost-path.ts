@@ -19,8 +19,7 @@
  * min cost will be cost[m][n] + Min (cost(m,n-1), cost(m-1,n-1), cost(m-1,n))
  */
 const minCostPath = (cost: number[][], m: number, n: number): number => {
-    if (m < 0 || n < 0) return Number.MAX_VALUE;
-    if (m === 0 && n == 0) return cost[0][0];
+    if (m < 0 || n < 0) return 0;
 
     const map = ((minCostPath as any as FuncWithMap).map =
         (minCostPath as any as FuncWithMap).map || {});
