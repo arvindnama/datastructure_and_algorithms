@@ -1,9 +1,9 @@
-interface ObjectWithValue {
+export interface ObjectWithValue {
     valueOf: () => number;
 }
-type HeapElement = number | string | ObjectWithValue;
+export type HeapElement = number | string | ObjectWithValue;
 
-interface IHeap {
+export interface IHeap {
     insert: (k: HeapElement) => void;
     getTop: () => Nullable<HeapElement>;
     removeTop: () => Nullable<HeapElement>;
@@ -15,16 +15,34 @@ interface IHeap {
     getHeapAsArray: () => Nullable<HeapElement>[];
 }
 
+const defaultComparator = (a: HeapElement, b: HeapElement): number => {
+    if (typeof a == 'string' && typeof b == 'string') {
+        return a.length - b.length;
+    } else if (typeof a == 'number' && typeof b == 'number') {
+        return a - b;
+    } else {
+        return (a.valueOf() as number) - (b.valueOf() as number);
+    }
+};
+
 abstract class Heap implements IHeap {
     protected maxSize: number;
     protected array: Array<Nullable<HeapElement>>;
     protected heapSize: number;
     protected abstract replacementValue: HeapElement;
+    protected comparator: (a: HeapElement, b: HeapElement) => number;
 
-    constructor(size: number) {
+    constructor(
+        size: number,
+        comparator: (
+            a: HeapElement,
+            b: HeapElement
+        ) => number = defaultComparator
+    ) {
         this.maxSize = size;
         this.array = [];
         this.heapSize = 0;
+        this.comparator = comparator;
     }
     /**
      * Helper methods that will rearrange the heap from bottom up to root
@@ -112,7 +130,10 @@ export class MaxHeap extends Heap {
     protected fixPositionOfKeyAt(nodeIdx: number) {
         let i = nodeIdx;
         let parentIdx = this.getParentIdx(i);
-        while (i != 0 && this.getEl(i) >= this.getEl(parentIdx)) {
+        while (
+            i != 0 &&
+            this.comparator(this.getEl(i), this.getEl(parentIdx)) >= 0
+        ) {
             [this.array[i], this.array[parentIdx]] = [
                 this.array[parentIdx],
                 this.array[i],
@@ -126,10 +147,16 @@ export class MaxHeap extends Heap {
         let max = nodeIdx;
         const lIdx = this.leftChildIdx(nodeIdx);
         const rIdx = this.rightChildIdx(nodeIdx);
-        if (lIdx < this.heapSize && this.getEl(nodeIdx) < this.getEl(lIdx)) {
+        if (
+            lIdx < this.heapSize &&
+            this.comparator(this.getEl(nodeIdx), this.getEl(lIdx)) < 0
+        ) {
             max = lIdx;
         }
-        if (rIdx < this.heapSize && this.getEl(max) < this.getEl(rIdx)) {
+        if (
+            rIdx < this.heapSize &&
+            this.comparator(this.getEl(max), this.getEl(rIdx)) < 0
+        ) {
             max = rIdx;
         }
 
@@ -150,7 +177,10 @@ export class MinHeap extends Heap {
         let i = nodeIdx;
         let parentIdx = this.getParentIdx(i);
 
-        while (i != 0 && this.getEl(i) <= this.getEl(parentIdx)) {
+        while (
+            i != 0 &&
+            this.comparator(this.getEl(i), this.getEl(parentIdx)) <= 0
+        ) {
             [this.array[i], this.array[parentIdx]] = [
                 this.array[parentIdx],
                 this.array[i],
@@ -166,11 +196,17 @@ export class MinHeap extends Heap {
         const lIdx = this.leftChildIdx(nodeIdx);
         const rIdx = this.rightChildIdx(nodeIdx);
 
-        if (lIdx < this.heapSize && this.getEl(nodeIdx) > this.getEl(lIdx)) {
+        if (
+            lIdx < this.heapSize &&
+            this.comparator(this.getEl(nodeIdx), this.getEl(lIdx)) > 0
+        ) {
             min = lIdx;
         }
 
-        if (rIdx < this.heapSize && this.getEl(min) > this.getEl(rIdx)) {
+        if (
+            rIdx < this.heapSize &&
+            this.comparator(this.getEl(min), this.getEl(rIdx)) > 0
+        ) {
             min = rIdx;
         }
 
