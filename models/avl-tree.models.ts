@@ -19,6 +19,19 @@ const recalculateHeight = (n: Nullable<TreeNumNode>): void => {
 };
 
 const leftRotate = (z: Nullable<TreeNumNode>): AvlNumTreeNode => {
+    //      z
+    //     / \
+    //    t1  y
+    //       / \
+    //      t2  t3
+    //
+    //       To
+    //
+    //      Y
+    //     / \
+    //    z  t3
+    //   / \
+    //  t1 t2
     const y = asAvl(z).right;
     const t = asAvl(y).left;
 
@@ -33,6 +46,20 @@ const leftRotate = (z: Nullable<TreeNumNode>): AvlNumTreeNode => {
 };
 
 const rightRotate = (z: Nullable<TreeNumNode>): AvlNumTreeNode => {
+     //      z
+    //     / \
+    //    y   t4
+    //   / \
+    //  x  t3
+    //
+    //     To
+    //
+    //      y
+    //     / \
+    //    x  z
+    //       / \
+    //      t3  t4
+
     const y = asAvl(z).left;
     const t = asAvl(y).right;
 
