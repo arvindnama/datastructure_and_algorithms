@@ -2,7 +2,7 @@ import {
     TreeNode,
     TreeNumNode,
     printTree,
-} from '../../../../models/tree.models';
+} from '../../../../../models/tree.models';
 
 interface AvlTreeNode<T> extends TreeNode<T> {
     height: number;

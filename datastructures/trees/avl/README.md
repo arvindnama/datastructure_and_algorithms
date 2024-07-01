@@ -18,7 +18,7 @@ Balance factor of a node can help determine if the node is balanced or not.
 balance factor of a node : BF(node):
 
 ``` javascript
-BF(node) = Height(leftChild) - Height(rightChild).
+BF(node) = Height(rightChild) - Height(leftChild).
 ```
 
 if BF(node) is < -1 or >1 , then the node / subtree is unbalanced (cos in AVL tree the left & right subtree are of same height or differ by `1` )

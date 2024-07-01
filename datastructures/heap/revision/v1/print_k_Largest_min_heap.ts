@@ -1,4 +1,4 @@
-import { MinHeap } from '../../../models/heap.models';
+import { MinHeap } from '../../../../models/heap.models';
 
 function printKLargestElementsInArray(arr: number[], k: number): number[] {
     const h = new MinHeap(k);
