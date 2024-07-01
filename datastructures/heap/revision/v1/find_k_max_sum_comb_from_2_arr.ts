@@ -3,7 +3,7 @@
 A sum combination is made by adding one element from array A and another element of array B. Display the maximum K valid sum combinations from all the possible sum combinations.
  */
 
-import { MinHeap } from '../../../models/heap.models';
+import { MinHeap } from '../../../../models/heap.models';
 
 function findKMaxSumCombinationsFrom2Arrays(
     a: number[],
