@@ -1,6 +1,11 @@
 export interface ObjectWithValue {
     valueOf: () => number;
 }
+
+export type HeapElementComparator = (
+    a1: HeapElement,
+    a2: HeapElement
+) => number;
 export type HeapElement = number | string | ObjectWithValue;
 
 export interface IHeap {
@@ -30,14 +35,11 @@ abstract class Heap implements IHeap {
     protected array: Array<Nullable<HeapElement>>;
     protected heapSize: number;
     protected abstract replacementValue: HeapElement;
-    protected comparator: (a: HeapElement, b: HeapElement) => number;
+    protected comparator: HeapElementComparator;
 
     constructor(
         size: number,
-        comparator: (
-            a: HeapElement,
-            b: HeapElement
-        ) => number = defaultComparator
+        comparator: HeapElementComparator = defaultComparator
     ) {
         this.maxSize = size;
         this.array = [];
