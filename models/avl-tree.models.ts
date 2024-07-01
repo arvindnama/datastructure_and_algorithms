@@ -101,7 +101,7 @@ function insertIntoAvl(
             // This is a left right imbalanced tree, Rotate 2 times :
             // 1. Rotate right at y
             // 2. Rotate left at z
-            root.left = rightRotate(root.left);
+            root.left = leftRotate(root.left);
             root = rightRotate(root);
         }
     } else if (bf > 1) {
