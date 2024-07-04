@@ -6,6 +6,7 @@ const trie = new Trie('');
 
 console.log('Insert and, ant , dad & do');
 trie.insert('and');
+trie.insert('andrew');
 trie.insert('ant');
 trie.insert('dad');
 trie.insert('do');

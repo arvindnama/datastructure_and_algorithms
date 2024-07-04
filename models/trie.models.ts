@@ -5,11 +5,11 @@ export interface TrieNode {
     idxMap: { [key in string]: number };
 }
 
-const createTrieNode = (key: string): TrieNode => ({
+const createTrieNode = (key: string, isEnd = false): TrieNode => ({
     key,
     childNodes: [],
     idxMap: {},
-    isEnd: true,
+    isEnd: isEnd,
 });
 
 const lookupElementInRoot = (
@@ -26,10 +26,7 @@ const lookupElementInRoot = (
 const insertIntoTrie = (root: TrieNode, element: string): TrieNode => {
     let node = lookupElementInRoot(root, element);
     if (node) return node;
-    if (root.isEnd) {
-        // key element not found hence we will need to insert here
-        root.isEnd = false;
-    }
+
     node = createTrieNode(element);
     root.idxMap[element] = root.childNodes.length;
     root.childNodes.push(node);
@@ -81,24 +78,40 @@ const deleteElement = (root: TrieNode, keys: string[]): Nullable<TrieNode> => {
     for (let i = 0; i < root.childNodes.length; i++) {
         const node = deleteElement(root.childNodes[i], keys);
         if (!node) {
-            // we found a match and we deleted
-            root.idxMap[keys[0]] = -1;
-            root.childNodes.splice(i, 1);
-            root.isEnd = root.childNodes.length == 0;
-            // is this root is also end , then select delete and return null
-            return root.isEnd ? null : root;
+            /**
+             * we found a match
+             *
+             * we delete the entry from the childNodes
+             *
+             * if current node is leaf i.e. there is no more children below it
+             * then this is end of the word and it is not a sub-word. of another
+             * larger word.
+             *  For example: and & andrew , both are words , and is a sub-word of andrew.
+             *  Hence and (d node will have isEnd == true & will still have children)
+             * In this case we will  not delete the node instead we will just reset
+             * isEnd = false; (to preserve the larger word i.e. andrew)
+             */
+
+            if (root.childNodes[i].childNodes.length) {
+                // found a match and this is a subword hence dont delete
+                // just reset isEnd to false;
+                root.childNodes[i].isEnd = false;
+                return root;
+            } else {
+                root.idxMap[keys[0]] = -1;
+                root.childNodes.splice(i, 1);
+                const isASubWord = root.isEnd; // root so far is a sub-word
+                // if current root is end of another sub-word we should not delete it.
+                // else delete upwards
+                return isASubWord ? root : null;
+            }
         }
     }
     return root;
 };
 
 export class Trie {
-    #root: TrieNode = {
-        isEnd: true,
-        key: '',
-        childNodes: [],
-        idxMap: {},
-    };
+    #root: TrieNode = createTrieNode('');
 
     constructor(public delimiter = '') {}
 
@@ -111,6 +124,7 @@ export class Trie {
         element.split(this.delimiter).forEach((key: string) => {
             node = insertIntoTrie(node, key);
         });
+        node.isEnd = true;
     }
 
     public print(): string[] {
