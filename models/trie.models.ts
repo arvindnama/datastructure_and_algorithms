@@ -1,149 +1,133 @@
-export interface TrieNode {
+interface TrieNode {
     isEnd: boolean;
-    childNodes: TrieNode[];
-    key: string;
-    idxMap: { [key in string]: number };
+    children: TrieNode[];
+    val: string;
 }
 
-const createTrieNode = (key: string, isEnd = false): TrieNode => ({
-    key,
-    childNodes: [],
-    idxMap: {},
-    isEnd: isEnd,
+const createTrieNode = (val: string, isEnd = false): TrieNode => ({
+    val,
+    isEnd,
+    children: [],
 });
 
-const lookupElementInRoot = (
-    root: TrieNode,
-    element: string
-): Nullable<TrieNode> => {
-    if (root.idxMap[element] >= 0) {
-        // element already present return the node
-        return root.childNodes[root.idxMap[element]];
-    }
-    return null;
-};
+const lookupKeyInNode = (node: TrieNode, key: string): Nullable<TrieNode> =>
+    node.children?.find((n) => n.val === key);
 
-const insertIntoTrie = (root: TrieNode, element: string): TrieNode => {
-    let node = lookupElementInRoot(root, element);
-    if (node) return node;
+const insertIntoTree = (root: TrieNode, key: string): TrieNode => {
+    let node = lookupKeyInNode(root, key);
+    if (node) return node; // found node ,do create reuse it.
 
-    node = createTrieNode(element);
-    root.idxMap[element] = root.childNodes.length;
-    root.childNodes.push(node);
+    node = createTrieNode(key);
+    root.children.push(node);
+
     return node;
 };
 
-const navigateAndCollectKeys = (
+const navigateNode = (
     root: TrieNode,
     delimiter: string,
-    tempKey: string,
-    keys: string[]
-): void => {
-    // in case of actual root element of trie will be empty
-    if (root.key) tempKey = `${tempKey}${delimiter}${root.key}`;
-
+    tempData: string,
+    trieDataStore: string[]
+) => {
+    tempData = `${tempData}${delimiter}${root.val}`;
     if (root.isEnd) {
-        // tempKey is the constructed key store them into keys
-        keys.push(tempKey);
+        trieDataStore.push(tempData);
     }
-    // hence ignore empty string.
-    root.childNodes.forEach((n) => {
-        navigateAndCollectKeys(n, delimiter, tempKey, keys);
-    });
+    root.children.forEach((c) =>
+        navigateNode(c, delimiter, tempData, trieDataStore)
+    );
 };
 
-const searchKey = (root: TrieNode, keys: string[]): boolean => {
-    // we found a match
-    if (root.isEnd && keys.length === 1 && root.key === keys[0]) return true;
+const search = (root: TrieNode, keys: string[]): boolean => {
+    if (keys.length === 0) return false;
+    // found the data
+    if (root.isEnd && keys.length === 1 && root.val === keys[0]) return true;
 
-    // there is a mismatch in the key and node
-    if (keys[0] !== root.key) return false;
+    if (root.val !== keys[0]) return false; // no match
 
-    // remove the top most element and now each for the remaining in root's children
+    // key & tree matched so far , let loop down the tree.
     keys.shift();
 
-    return root.childNodes.some((r) => searchKey(r, keys));
+    return root.children.some((c) => search(c, keys));
 };
 
-const deleteElement = (root: TrieNode, keys: string[]): Nullable<TrieNode> => {
-    // we reached the end
-    if (root.isEnd && keys.length === 1 && root.key === keys[0]) return null;
+const deleteData = (root: TrieNode, keys: string[]): Nullable<TrieNode> => {
+    // no match found - key exhausted stop search here and return.
+    // by returning root we are ensure nothing is deleted.
+    if (keys.length === 0) return root;
+    // found the end of the data in the tree, start delete the node form here
+    // upwards, Return null to its parent
+    if (root.isEnd && keys.length === 1 && root.val === keys[0]) {
+        // we found the `data` and leaf node is being deleted
+        // we need to evaluate if current node needs to be deleted or not.
+        // if current node has no children and isEnd true,
+        //      then `data` is not a subword in the tree we can delete upwards.
+        // else if current node  has children and isEnd true ,
+        //      then there are more words down the the tree.
+        // we should not delete the child node instead just reset isEnd as false
+        // this will ensure the `data` is no long recognized but it is just part of //
+        // another large word
 
-    // match broken , so don't delete just return.
-    if (root.key !== keys[0]) return root;
+        if (root.children.length) {
+            root.isEnd = false;
+            return root;
+        }
+        // no children , start deleting
+        return null;
+    }
 
-    // match found, but we dint reach the end so further navigate down.
+    // part of the data mismatch, stop search and return root to prevent any deletion
+    if (root.val !== keys[0]) return root;
 
     keys.shift();
-    for (let i = 0; i < root.childNodes.length; i++) {
-        const node = deleteElement(root.childNodes[i], keys);
-        if (!node) {
-            /**
-             * we found a match
-             *
-             * we delete the entry from the childNodes
-             *
-             * if current node is leaf i.e. there is no more children below it
-             * then this is end of the word and it is not a sub-word. of another
-             * larger word.
-             *  For example: and & andrew , both are words , and is a sub-word of andrew.
-             *  Hence and (d node will have isEnd == true & will still have children)
-             * In this case we will  not delete the node instead we will just reset
-             * isEnd = false; (to preserve the larger word i.e. andrew)
-             */
 
-            if (root.childNodes[i].childNodes.length) {
-                // found a match and this is a subword hence dont delete
-                // just reset isEnd to false;
-                root.childNodes[i].isEnd = false;
-                return root;
-            } else {
-                root.idxMap[keys[0]] = -1;
-                root.childNodes.splice(i, 1);
-                const isASubWord = root.isEnd; // root so far is a sub-word
-                // if current root is end of another sub-word we should not delete it.
-                // else delete upwards
-                return isASubWord ? root : null;
-            }
+    for (let i = 0; i < root.children.length; i++) {
+        const res = deleteData(root.children[i], keys);
+        if (!res) {
+            // remove the node from children array.
+            root.children.splice(i, 1);
+
+            // if i need to delete the current root ??
+            // if the root has zero children , then we need to delete root as well
+            // if root is end then there is another subword present hence we should stop
+            // delete here.
+            return root.isEnd || root.children.length ? root : null;
         }
     }
+
     return root;
 };
 
 export class Trie {
-    #root: TrieNode = createTrieNode('');
+    #root = createTrieNode('');
 
     constructor(public delimiter = '') {}
 
-    public get root(): TrieNode {
-        return this.#root;
-    }
-
-    public insert(element: string) {
+    public insert(data: string): void {
+        const keys = data.split(this.delimiter);
         let node = this.#root;
-        element.split(this.delimiter).forEach((key: string) => {
-            node = insertIntoTrie(node, key);
-        });
+        keys.forEach((key) => (node = insertIntoTree(node, key)));
+        // after inserting all the parts of data , mark the last node as end.
         node.isEnd = true;
     }
 
+    public search(data: string): boolean {
+        let keys = data.split(this.delimiter);
+        // root has a empty  value
+        keys = ['', ...keys];
+        return search(this.#root, keys);
+    }
+
+    public delete(data: string) {
+        let keys = data.split(this.delimiter);
+        // root has a empty  value
+        keys = ['', ...keys];
+        deleteData(this.#root, keys);
+    }
+
     public print(): string[] {
-        const keys: string[] = [];
-        navigateAndCollectKeys(this.#root, this.delimiter, '', keys);
-        return keys;
-    }
-
-    public search(key: string): boolean {
-        let splitKeys = key.split(this.delimiter);
-        // root node in the tree is always empty, hence add a dummy to the the list
-        splitKeys = ['', ...splitKeys];
-        return searchKey(this.#root, splitKeys);
-    }
-
-    public delete(key: string): void {
-        let splitKeys = key.split(this.delimiter);
-        // root node in the tree is always empty, hence add a dummy to the the list
-        splitKeys = ['', ...splitKeys];
-        deleteElement(this.#root, splitKeys);
+        const dataStore: string[] = [];
+        navigateNode(this.#root, this.delimiter, '', dataStore);
+        return dataStore;
     }
 }
