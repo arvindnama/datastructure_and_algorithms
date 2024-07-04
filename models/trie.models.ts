@@ -1,4 +1,4 @@
-interface TrieNode {
+export interface TrieNode {
     isEnd: boolean;
     children: TrieNode[];
     val: string;
@@ -100,6 +100,10 @@ const deleteData = (root: TrieNode, keys: string[]): Nullable<TrieNode> => {
 
 export class Trie {
     #root = createTrieNode('');
+
+    public get root(): TrieNode {
+        return this.#root;
+    }
 
     constructor(public delimiter = '') {}
 
