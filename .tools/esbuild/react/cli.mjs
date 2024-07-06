@@ -19,7 +19,8 @@ const getCtx = (options) => {
         minify: false,
         sourcemap: true,
         loader: { '.js': 'jsx' },
-        target: ['chrome58', 'firefox57', 'safari11', 'edge16'],
+        // target: ['chrome58', 'firefox57', 'safari11', 'edge16'],
+        target: ['chrome98'],
         outfile: join(reactHarnessBundlesRoot, 'app.js'),
     });
 };
@@ -48,7 +49,8 @@ const build = async (options) => {
             '.js': 'jsx',
             '.ts': 'tsx',
         },
-        target: ['chrome58', 'firefox57', 'safari11', 'edge16'],
+        // target: ['chrome58', 'firefox57', 'safari11', 'edge16'],
+        target: ['chrome98'],
         outfile: join(reactHarnessBundlesRoot, 'app.js'),
     });
 };
