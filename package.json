@@ -5,7 +5,7 @@
     "scripts": {
         "lint": "eslint .",
         "pretty": "prettier --write \"./**/*.{js,jsx,mjs,cjs,ts,tsx,json}\"",
-        "ts": "ts-node",
+        "ts": "ts-node --project tsconfig-node.json ",
         "prepare": "husky",
         "react-cli": "node ./.tools/esbuild/react/cli.mjs",
         "react-clean": "rm -rf ./react-harness/.bundles/app.js* ",
@@ -27,6 +27,8 @@
         "@eslint/compat": "^1.1.0",
         "@eslint/js": "^9.2.0",
         "@types/node": "^20.12.8",
+        "@types/react": "^18.3.3",
+        "@types/react-dom": "^18.3.0",
         "command-line-args": "^6.0.0",
         "esbuild": "^0.23.0",
         "eslint": "^9.2.0",

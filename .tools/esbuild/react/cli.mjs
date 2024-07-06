@@ -44,7 +44,10 @@ const build = async (options) => {
         bundle: true,
         minify: false,
         sourcemap: true,
-        loader: { '.js': 'jsx' },
+        loader: {
+            '.js': 'jsx',
+            '.ts': 'tsx',
+        },
         target: ['chrome58', 'firefox57', 'safari11', 'edge16'],
         outfile: join(reactHarnessBundlesRoot, 'app.js'),
     });
