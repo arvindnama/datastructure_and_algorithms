@@ -1,0 +1,31 @@
+
+.container{
+    padding: 15px;
+    width: fit-content;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+
+}
+
+.box {
+    width: 80px;
+    height: 80px;
+}
+
+
+.box.visible {
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+.box.selected {
+    background-color: #0bcc59;
+}
+
+.box.hidden {
+    opacity: 0;
+    border: 0px;
+    cursor: initial;
+    pointer-events: none;
+}
