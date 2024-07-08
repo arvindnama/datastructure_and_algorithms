@@ -9,8 +9,8 @@ const optionsDef = [
     { name: 'help', alias: 'h', type: String },
 ];
 
-const reactHarnessRoot = './harness/react/';
-const reactHarnessBundlesRoot = join(reactHarnessRoot, '.bundles/');
+const ngHarnessRoot = './harness/angular/';
+const ngHarnessBundlesRoot = join(ngHarnessRoot, '.bundles/');
 
 const getCtx = (options) => {
     return esbuild.context({
@@ -18,10 +18,9 @@ const getCtx = (options) => {
         bundle: true,
         minify: false,
         sourcemap: true,
-        loader: { '.js': 'jsx' },
         // target: ['chrome58', 'firefox57', 'safari11', 'edge16'],
         target: ['chrome98'],
-        outfile: join(reactHarnessBundlesRoot, 'app.js'),
+        outfile: join(ngHarnessBundlesRoot, 'app.js'),
     });
 };
 
@@ -35,7 +34,7 @@ const serve = async (options) => {
     await ctx.serve({
         host: 'localhost',
         port: 8080,
-        servedir: reactHarnessRoot,
+        servedir: ngHarnessRoot,
     });
 };
 
@@ -51,7 +50,7 @@ const build = async (options) => {
         },
         // target: ['chrome58', 'firefox57', 'safari11', 'edge16'],
         target: ['chrome98'],
-        outfile: join(reactHarnessBundlesRoot, 'app.js'),
+        outfile: join(ngHarnessBundlesRoot, 'app.js'),
     });
 };
 
