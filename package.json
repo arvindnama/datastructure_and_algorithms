@@ -8,26 +8,37 @@
         "ts": "ts-node --project tsconfig-node.json ",
         "prepare": "husky",
         "react-cli": "node ./.tools/esbuild/react/cli.mjs",
-        "react-clean": "rm -rf ./react-harness/.bundles/app.js* ",
+        "react-clean": "rm -rf ./harness/react/.bundles/app.js* ",
         "react-build": "pnpm react-clean && pnpm react-cli -c build -s ",
         "react-watch": "pnpm react-clean && pnpm react-cli -c watch -s ",
-        "react-serve": "pnpm react-clean && pnpm react-cli -c serve -s "
+        "react-serve": "pnpm react-clean && pnpm react-cli -c serve -s ",
+        "ng-cli": "node ./.tools/esbuild/ng/cli.mjs",
+        "ng-clean": "rm -rf ./harness/angular/.bundles/app.js* ",
+        "ng-watch": "pnpm ng-clean && pnpm ng-cli -c watch -s ",
+        "ng-serve": "pnpm ng-clean && pnpm ng-cli -c serve -s ",
+        "ng-build": "pnpm ng-clean && pnpm ng-cli -c build -s ",
+        "ng-build--": "esbuild mock-interviews/angular/sample-ng-app/app.ts --bundle --outfile=harness/angular/.bundles/app.js"
     },
     "keywords": [],
     "author": "",
     "license": "ISC",
     "dependencies": {
+        "@angular/core": "^18.0.6",
+        "@angular/platform-browser": "^18.0.6",
+        "@angular/platform-browser-dynamic": "^18.0.6",
         "@tsconfig/node18": "^18.2.4",
         "classnames": "^2.5.1",
         "lodash.shuffle": "^4.2.0",
         "react": "^18.3.1",
         "react-dom": "^18.3.1",
         "ts-node": "^10.9.2",
-        "typescript": "^5.4.5"
+        "typescript": "^5.4.5",
+        "zone.js": "^0.14.7"
     },
     "devDependencies": {
         "@eslint/compat": "^1.1.0",
         "@eslint/js": "^9.2.0",
+        "@ngtools/webpack": "^18.0.7",
         "@types/jsdom": "^21.1.7",
         "@types/lodash.shuffle": "^4.2.9",
         "@types/node": "^20.12.8",
@@ -46,6 +57,9 @@
         "husky": "^9.0.11",
         "jsdom": "^24.1.0",
         "prettier": "^3.2.5",
-        "typescript-eslint": "^7.9.0"
+        "ts-loader": "^9.5.1",
+        "typescript-eslint": "^7.9.0",
+        "webpack": "^5.92.1",
+        "webpack-cli": "^5.1.4"
     }
 }
