@@ -1,0 +1,39 @@
+
+.gameBoard {
+    display: flex;
+    border: 5px solid red;
+    padding: 5px;
+    width: 1000px;
+    height: 400px;
+    flex-flow: column;
+    position: relative;
+}
+
+
+.actionBar {
+    display: flex;
+    flex-flow: row;
+    gap: 10px;
+}
+
+.action {
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid aqua;
+    background-color: aqua;
+    cursor: pointer;
+}
+
+.actionBar.action:disabled {
+    background-color: grey;
+    pointer-events: none;
+    cursor: initial;
+}
+
+
+.circle {
+    position: absolute;
+    border-radius:50%;
+    width: 25px;
+    height: 25px;
+}
