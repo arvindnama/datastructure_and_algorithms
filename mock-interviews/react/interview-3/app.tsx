@@ -63,7 +63,6 @@ const Bar = ({dep}: {dep:DepartmentNormalized}) => {
                 height: `${dep.height}%`,
             }}
             className="bar"
-            key={dep.id}
         >
             <div className="bar-tooltip">
                 {dep.tooltip}
@@ -108,7 +107,7 @@ const BarChart = ({data}: {data: Array<Department>}) => {
                     <div className="yAxis">Departments</div>
                     <div className="graph">
                     {
-                        computedGraphData.map((dep) => <Bar dep={dep}/>)
+                        computedGraphData.map((dep) => <Bar key={dep.id} dep={dep}/>)
                     }
                     </div>
                 </div>
