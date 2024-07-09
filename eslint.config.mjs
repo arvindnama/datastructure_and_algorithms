@@ -20,6 +20,7 @@ export default [
             globals: globals.browser,
         },
         rules: {
+            'no-prototype-builtins': 'off',
             'no-sparse-arrays': 'off',
             '@typescript-eslint/no-explicit-any': 'off',
         },
