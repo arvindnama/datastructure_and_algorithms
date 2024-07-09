@@ -1,0 +1,57 @@
+
+.sidebarItem{
+    padding: 5px;
+    display: flex;
+}
+
+.sidebarItem a {
+    padding: 5px;
+    color: #0097e6;
+    cursor: pointer;
+}
+
+.sidebarItem a:hover {
+    text-decoration: underline;
+    transition: all 0.25s ease-in-out;
+
+}
+.sidebarItem .sidebarIcon{
+    padding: 5px;
+}
+
+.sidebarItem.sidebarItemExpanded .sidebarIcon{
+    transform: rotate(90deg);
+}
+.sidebarItem .sidebarIcon{
+    transition: transform 0.25s ease-in-out;
+}
+
+.circleIcon {
+    margin-top: 5px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: black;
+}
+
+.sidebarSubitem {
+    padding-left: 30px;
+    transition: display 0.25s ease-in-out;
+    animation-name: subitem-display;
+    animation-duration: 0.5s;
+}
+
+@keyframes subitem-display {
+    0% {
+        opacity: 0;
+    }
+    50%{
+        opacity: 0.5;
+    }
+    75%{
+        opacity: 0.75;
+    }
+    100% {
+        opacity: 1;
+    }
+}
