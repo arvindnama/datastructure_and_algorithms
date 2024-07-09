@@ -5,6 +5,12 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@angular/common':
+    specifier: ^18.0.6
+    version: 18.0.6(@angular/core@18.0.6)(rxjs@7.8.1)
+  '@angular/compiler':
+    specifier: ^18.0.6
+    version: 18.0.6(@angular/core@18.0.6)
   '@angular/core':
     specifier: ^18.0.6
     version: 18.0.6(rxjs@7.8.1)(zone.js@0.14.7)
@@ -29,6 +35,9 @@ dependencies:
   react-dom:
     specifier: ^18.3.1
     version: 18.3.1(react@18.3.1)
+  rxjs:
+    specifier: ^7.8.1
+    version: 7.8.1
   ts-node:
     specifier: ^10.9.2
     version: 10.9.2(@types/node@20.12.8)(typescript@5.4.5)
@@ -2410,6 +2419,7 @@ packages:
   /fsevents@2.3.3:
     resolution: {integrity: sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw==}
     engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
+    os: [darwin]
     requiresBuild: true
     dev: true
     optional: true
