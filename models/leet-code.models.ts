@@ -1,3 +1,6 @@
+/**
+ * Linked list models & utils
+ */
 export class ListNode {
     val: number;
     next: ListNode | null;
@@ -26,6 +29,10 @@ export const printList = (h: ListNode | null): number[] => {
     return res;
 };
 
+/**
+ *  Tree models
+ */
+
 export class TreeNode {
     val: number;
     left: TreeNode | null;
@@ -37,10 +44,10 @@ export class TreeNode {
     }
 }
 
-export const createTreeNode = (val?: number): TreeNode | null =>
+export const createTreeNode = (val?: number | null): TreeNode | null =>
     val !== undefined && val !== null ? new TreeNode(val) : null;
 
-export function createTree(values: number[]): TreeNode {
+export function createTree(values: Array<number | null>): TreeNode {
     const root: TreeNode = createTreeNode(values.shift()) as TreeNode;
     const queue = [];
     queue.push(root);
