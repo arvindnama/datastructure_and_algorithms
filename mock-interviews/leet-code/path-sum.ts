@@ -11,8 +11,6 @@ function hasPathSum(root: TreeNode | null, targetSum: number): boolean {
     if (!root?.left && !root?.right) {
         return root?.val === targetSum;
     }
-    if (!root && targetSum !== 0) return false;
-    if (root && targetSum <= 0) return false;
 
     targetSum -= root?.val ?? 0;
     return (
