@@ -6,6 +6,7 @@ export interface ListNode<T> {
 export type NullableNumListNode = Nullable<ListNode<number>>;
 export type NumListNode = ListNode<number>;
 
+export const createNumListNode = (value: number) => ({ value }) as NumListNode;
 export function createList<T>(
     values: T[],
     allowCircular = false
