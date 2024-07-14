@@ -7,33 +7,21 @@ All occurrences of a character must be replaced with another character while pre
  */
 
 function isIsomorphic(s: string, t: string): boolean {
-    let randSeed = 'A'.charCodeAt(0);
-    const generateRandom = () => String.fromCharCode(randSeed++);
-    let [s1, t1] = ['', ''];
-    const map: { [key in string]: string } = {};
+    const mapS: { [k in string]: number } = {};
+    const mapT: { [k in string]: number } = {};
+
     for (let i = 0; i < s.length; i++) {
-        const rs = map[s[i]];
-        const rt = map[t[i]];
-        if (!rs && !rt) {
-            // replace char not found for both , assign one to both
-            const r = generateRandom();
-            console.log(r);
-            map[s[i]] = r;
-            map[t[i]] = r;
-        } else if (!rs) {
-            map[s[i]] = rt;
-        } else if (!rt) map[t[i]] = rs;
-        s1 += `${map[s[i]]}`;
-        t1 += `${map[t[i]]}`;
+        if (mapS[s[i]] !== mapT[t[i]]) return false;
+        mapS[s[i]] = i;
+        mapT[t[i]] = i;
     }
 
-    console.log(s, t);
-    console.log(s1, t1);
-    return s1 == t1;
+    return true;
 }
 
 console.log(isIsomorphic('add', 'egg'));
 console.log(isIsomorphic('foo', 'bar'));
-// console.log(isIsomorphic('paper', 'title'));
+console.log(isIsomorphic('paper', 'title'));
 
-// console.log(isIsomorphic('bbbaaaba', 'aaabbbba'));
+console.log(isIsomorphic('bbbaaaba', 'aaabbbba'));
+console.log(isIsomorphic('badc', 'baba'));
