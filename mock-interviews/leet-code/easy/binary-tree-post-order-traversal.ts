@@ -2,7 +2,7 @@
  * Given the root of a binary tree, return the postorder traversal of its nodes' values.
  */
 
-import { createTree, TreeNode } from '../../models/leet-code.models';
+import { createTree, TreeNode } from '../../../models/leet-code.models';
 
 function postorderTraversal(root: TreeNode | null): number[] {
     if (!root) return [];

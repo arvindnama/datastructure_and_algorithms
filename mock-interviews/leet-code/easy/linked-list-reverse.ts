@@ -1,6 +1,10 @@
 // Given the head of a singly linked list, reverse the list, and return the reversed list.
 
-import { ListNode, createList, printList } from '../../models/leet-code.models';
+import {
+    ListNode,
+    createList,
+    printList,
+} from '../../../models/leet-code.models';
 
 function reverseList(head: ListNode | null): ListNode | null {
     if (!head) return head;

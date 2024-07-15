@@ -2,7 +2,7 @@
  * Given the root of a binary tree, check whether it is a mirror of itself (i.e., symmetric around its center).
  */
 
-import { createTree, TreeNode } from '../../models/leet-code.models';
+import { createTree, TreeNode } from '../../../models/leet-code.models';
 
 function isSymmetric(root: TreeNode | null): boolean {
     if (!root) return true;

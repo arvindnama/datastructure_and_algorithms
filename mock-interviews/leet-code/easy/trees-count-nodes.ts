@@ -2,7 +2,7 @@
  * Given the root of a complete binary tree, return the number of the nodes in the tree.
  */
 
-import { createTree, TreeNode } from '../../models/leet-code.models';
+import { createTree, TreeNode } from '../../../models/leet-code.models';
 
 function countNodes(root: TreeNode | null): number {
     /**

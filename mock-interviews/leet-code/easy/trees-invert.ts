@@ -2,7 +2,11 @@
  * Given the root of a binary tree, invert the tree, and return its root.
  */
 
-import { createTree, printTree, TreeNode } from '../../models/leet-code.models';
+import {
+    createTree,
+    printTree,
+    TreeNode,
+} from '../../../models/leet-code.models';
 
 function invertTree(root: TreeNode | null): TreeNode | null {
     if (!root) return null;

@@ -3,7 +3,7 @@
 palindrome or false otherwise.
  */
 
-import { createList, ListNode } from '../../models/leet-code.models';
+import { createList, ListNode } from '../../../models/leet-code.models';
 
 function isPalindrome(head: ListNode | null): boolean {
     if (!head) return false;
