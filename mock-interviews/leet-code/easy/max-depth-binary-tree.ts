@@ -4,7 +4,7 @@
 A binary tree's maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node.
  */
 
-import { createTree, TreeNode } from '../../models/leet-code.models';
+import { createTree, TreeNode } from '../../../models/leet-code.models';
 
 function maxDepth(root: TreeNode | null): number {
     if (!root) return 0;

@@ -2,7 +2,7 @@
  * Given head, the head of a linked list, determine if the linked list has a cycle in it.
  */
 
-import { ListNode, createList } from '../../models/leet-code.models';
+import { ListNode, createList } from '../../../models/leet-code.models';
 
 function hasCycle(head: ListNode | null): boolean {
     if (!head) return false;

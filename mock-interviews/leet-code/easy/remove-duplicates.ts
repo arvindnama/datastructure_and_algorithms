@@ -4,7 +4,11 @@
 
  */
 
-import { ListNode, createList, printList } from '../../models/leet-code.models';
+import {
+    ListNode,
+    createList,
+    printList,
+} from '../../../models/leet-code.models';
 
 function deleteDuplicates(head: ListNode | null): ListNode | null {
     if (!head) return null;

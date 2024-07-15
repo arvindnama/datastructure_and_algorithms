@@ -4,7 +4,11 @@
 
  */
 
-import { createList, ListNode, printList } from '../../models/leet-code.models';
+import {
+    createList,
+    ListNode,
+    printList,
+} from '../../../models/leet-code.models';
 
 function removeElements(head: ListNode | null, val: number): ListNode | null {
     if (!head) return head;

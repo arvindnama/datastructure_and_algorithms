@@ -7,7 +7,7 @@ Note: A leaf is a node with no children.
 
  */
 
-import { createTree, TreeNode } from '../../models/leet-code.models';
+import { createTree, TreeNode } from '../../../models/leet-code.models';
 
 function minDepth(root: TreeNode | null): number {
     if (!root) return 0;

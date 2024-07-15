@@ -2,7 +2,7 @@
  * Binary Tree Preorder Traversal
  */
 
-import { TreeNode, createTree } from '../../models/leet-code.models';
+import { TreeNode, createTree } from '../../../models/leet-code.models';
 
 function preorderTraversal(root: TreeNode | null): number[] {
     if (!root) return [];

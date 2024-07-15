@@ -4,7 +4,7 @@
 A leaf is a node with no children.
  */
 
-import { createTree, TreeNode } from '../../models/leet-code.models';
+import { createTree, TreeNode } from '../../../models/leet-code.models';
 
 function hasPathSum(root: TreeNode | null, targetSum: number): boolean {
     if (!root && targetSum === 0) return false;

@@ -4,7 +4,7 @@ height-balanced
 .
  */
 
-import { createTree, TreeNode } from '../../models/leet-code.models';
+import { createTree, TreeNode } from '../../../models/leet-code.models';
 
 function isBalanced(root: TreeNode | null): boolean {
     if (!root) return true;

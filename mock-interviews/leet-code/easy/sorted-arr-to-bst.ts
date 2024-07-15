@@ -2,7 +2,7 @@
  * Given an integer array nums where the elements are sorted in ascending order, convert it to a  height-balanced binary search tree.
  */
 
-import { printTree, TreeNode } from '../../models/leet-code.models';
+import { printTree, TreeNode } from '../../../models/leet-code.models';
 
 function sortedArrayToBST(nums: number[]): TreeNode | null {
     const toBst = (s: number, e: number): TreeNode | null => {
