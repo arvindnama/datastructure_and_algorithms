@@ -21,18 +21,14 @@ function countNodes(root: TreeNode | null): number {
      */
 
     if (!root) return 0;
+
+    // height of leaf is zero
     const height = (root: TreeNode | null): number => {
-        return !root ? 0 : 1 + height(root.left);
+        return !root ? -1 : 1 + height(root.left);
     };
 
-    const nodeInFullTree = (height: number) => {
-        let nodes = 0;
-        while (height) {
-            nodes += 2 ** (height - 1);
-            height--;
-        }
-        return nodes;
-    };
+    const nodeInFullTree = (height: number) => 2 ** (height + 1) - 1;
+
     const treeHeight = height(root);
     const rightSubTreeHeight = height(root.right);
 
