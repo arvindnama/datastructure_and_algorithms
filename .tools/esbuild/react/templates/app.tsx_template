@@ -1,0 +1,9 @@
+
+import React, { useEffect, useMemo, useState } from 'react';
+import classnames from 'classnames';
+import { bootstrapReactApp } from '../../../libs/react/bootstrap';
+
+import './app.css';
+
+const App = () =>  (<h1> Helloworld</h1>)
+bootstrapReactApp(<App />)

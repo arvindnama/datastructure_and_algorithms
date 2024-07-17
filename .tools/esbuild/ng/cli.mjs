@@ -1,16 +1,30 @@
 import * as esbuild from 'esbuild';
 import commandLineArgs from 'command-line-args';
-import { join } from 'path';
+import { join } from 'node:path';
+import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 
 const optionsDef = [
     { name: 'cmd', alias: 'c', type: String },
     { name: 'outFile', alias: 'o', type: String },
     { name: 'srcFile', alias: 's', type: String },
+    { name: 'name', alias: 'n', type: String },
     { name: 'help', alias: 'h', type: String },
 ];
 
 const ngHarnessRoot = './harness/angular/';
 const ngHarnessBundlesRoot = join(ngHarnessRoot, '.bundles/');
+
+const appTsxPath = join('.tools/esbuild/ng/templates', 'app.ts_template');
+const ngAppRoot = join('mock-interviews', 'angular');
+
+const createNgSnippet = (options) => {
+    const appTemplate = readFileSync(appTsxPath, { encoding: 'utf8' });
+    const snippetName = options.name;
+    const snippetFolder = join(ngAppRoot, snippetName);
+    mkdirSync(snippetFolder);
+    writeFileSync(join(snippetFolder, 'app.ts'), appTemplate);
+    writeFileSync(join(snippetFolder, 'app.css'), '');
+};
 
 const getCtx = (options) => {
     return esbuild.context({
@@ -57,6 +71,9 @@ const build = async (options) => {
 const main = async () => {
     const options = commandLineArgs(optionsDef);
     switch (options.cmd) {
+        case 'create':
+            createNgSnippet(options);
+            break;
         case 'build':
             await build(options);
             break;

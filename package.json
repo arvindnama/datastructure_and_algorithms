@@ -9,15 +9,16 @@
         "prepare": "husky",
         "react-cli": "node ./.tools/esbuild/react/cli.mjs",
         "react-clean": "rm -rf ./harness/react/.bundles/app.js* ",
+        "react-create": "pnpm react-cli -c create -n ",
         "react-build": "pnpm react-clean && pnpm react-cli -c build -s ",
         "react-watch": "pnpm react-clean && pnpm react-cli -c watch -s ",
         "react-serve": "pnpm react-clean && pnpm react-cli -c serve -s ",
         "ng-cli": "node ./.tools/esbuild/ng/cli.mjs",
         "ng-clean": "rm -rf ./harness/angular/.bundles/app.js* ",
+        "ng-create": "pnpm ng-cli -c create -n ",
         "ng-watch": "pnpm ng-clean && pnpm ng-cli -c watch -s ",
         "ng-serve": "pnpm ng-clean && pnpm ng-cli -c serve -s ",
-        "ng-build": "pnpm ng-clean && pnpm ng-cli -c build -s ",
-        "ng-build--": "esbuild mock-interviews/angular/sample-ng-app/app.ts --bundle --outfile=harness/angular/.bundles/app.js"
+        "ng-build": "pnpm ng-clean && pnpm ng-cli -c build -s "
     },
     "keywords": [],
     "author": "",
