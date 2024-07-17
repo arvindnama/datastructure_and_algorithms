@@ -13,3 +13,4 @@ Following needs a revisit
 
 [] mock-interviews/leet-code/easy/count-bits.ts
 [] mock-interviews/leet-code/easy/is-perfect-sq.ts
+[] mock-interviews/leet-code/easy/binary-watch.ts
