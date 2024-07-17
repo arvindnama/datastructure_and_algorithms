@@ -1,16 +1,29 @@
 import * as esbuild from 'esbuild';
 import commandLineArgs from 'command-line-args';
-import { join } from 'path';
+import { join } from 'node:path';
+import { readFileSync, mkdirSync, writeFileSync } from 'node:fs';
 
 const optionsDef = [
     { name: 'cmd', alias: 'c', type: String },
     { name: 'outFile', alias: 'o', type: String },
     { name: 'srcFile', alias: 's', type: String },
+    { name: 'name', alias: 'n', type: String },
     { name: 'help', alias: 'h', type: String },
 ];
 
 const reactHarnessRoot = './harness/react/';
 const reactHarnessBundlesRoot = join(reactHarnessRoot, '.bundles/');
+const appTsxPath = join('.tools/esbuild/react/templates', 'app.tsx_template');
+const reactAppRoot = join('mock-interviews', 'react');
+
+const createReactSnippet = (options) => {
+    const appTemplate = readFileSync(appTsxPath, { encoding: 'utf8' });
+    const snippetName = options.name;
+    const snippetFolder = join(reactAppRoot, snippetName);
+    mkdirSync(snippetFolder);
+    writeFileSync(join(snippetFolder, 'app.tsx'), appTemplate);
+    writeFileSync(join(snippetFolder, 'app.css'), '');
+};
 
 const getCtx = (options) => {
     return esbuild.context({
@@ -58,6 +71,9 @@ const build = async (options) => {
 const main = async () => {
     const options = commandLineArgs(optionsDef);
     switch (options.cmd) {
+        case 'create':
+            createReactSnippet(options);
+            break;
         case 'build':
             await build(options);
             break;
