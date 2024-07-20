@@ -16,4 +16,5 @@ Following needs a revisit
 [] mock-interviews/leet-code/easy/binary-watch.ts
 [] mock-interviews/leet-code/easy/arrange-coints.ts
 
-[]mock-interviews/leet-code/easy/repeated-sub-pattern.ts
+[] mock-interviews/leet-code/easy/repeated-sub-pattern.ts
+[] mock-interviews/leet-code/easy/teemo-attacking.ts
