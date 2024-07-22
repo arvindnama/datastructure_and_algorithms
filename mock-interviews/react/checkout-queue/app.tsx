@@ -43,7 +43,7 @@ const CheckoutCounter = ({name, customers}:ICounter) => {
 
 const Checkout = () => {
     const[counters, setCounters] = useState(DefaultCounters);
-    const[waitingCustomer, setWaitingCustomer] = useState<number>();
+    const[waitingCustomer, setWaitingCustomer] = useState<number>(0);
 
     useEffect(()=>{
         setInterval(()=>{
