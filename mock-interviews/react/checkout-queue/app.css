@@ -1,0 +1,55 @@
+.checkout{
+    display: flex;
+    flex-direction: column;
+}
+
+
+.checkoutEntry{
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    justify-content: center;
+}
+.checkoutEntry input {
+    height: 1rem;
+    width: 10rem;
+    padding: 0.5rem;
+    border: 1px solid black;
+    border-radius: 0.5rem;
+}
+
+.checkoutEntry button {
+    height: 2rem;
+    width: 5rem;
+    border: 1px solid black;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.5s ease-in;
+}
+
+.counterArea{
+    padding: 2rem;
+    display: flex;
+    flex-direction: row;
+    gap: 5rem;
+    justify-content: center;
+}
+
+.checkoutCounter {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.checkoutCounter div {
+    width: 100px;
+    height: 100px;
+    line-height: 100px;
+    text-align: center;
+    font-size:25px;
+    border: 1px solid black;
+}
+.customer {
+    border-radius: 50%;
+}
+
