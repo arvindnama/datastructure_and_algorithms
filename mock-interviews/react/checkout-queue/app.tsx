@@ -16,7 +16,7 @@ interface ICounter {
 
 }
 
-const TimeToInvoiceOneItem = 1500;
+const TimeToInvoiceOneItem = 500;
 const DefaultCounters: Array<ICounter> = Array(5)
     .fill(null)
     .map((_,id)=> ({
@@ -46,26 +46,39 @@ const Checkout = () => {
     const[waitingCustomer, setWaitingCustomer] = useState<number>(0);
 
     useEffect(()=>{
-        setInterval(()=>{
+        const counter =  setInterval(()=>{
             setCounters(prevCounters => {
                 if(!prevCounters) return prevCounters;
-                const newCounters = structuredClone(prevCounters);
-                newCounters.forEach(counter => {
+
+                return prevCounters.map(counter => {
                     const customers = counter.customers;
                     if(
                         customers.length &&
                         Date.now() - customers[0].entryTime >= TimeToInvoiceOneItem
                     ){
-                        const activeCustomer = customers[0]
-                        activeCustomer.noOfItems--;
 
-                        if(activeCustomer.noOfItems === 0)
-                            customers.shift()
+                        const modifiedCustomers = [
+                            customers[0].noOfItems === 1
+                                ? null
+                                : {
+                                    ...customers[0],
+                                    noOfItems: customers[0].noOfItems - 1
+                                },
+                            ...customers.slice(1)
+                        ].filter(c => !!c)
+
+                        return {
+                            ...counter,
+                            customers: modifiedCustomers
+                        } as ICounter
                     }
+                    return counter;
                 })
-                return newCounters;
             })
         }, TimeToInvoiceOneItem)
+        return () => {
+            clearInterval(counter)
+        }
     },[])
 
     const addCustomerToQueue = (waitingCustomerItems: number) =>{
@@ -83,13 +96,22 @@ const Checkout = () => {
             )
             maxItems.sort((a,b) => a.totalItems - b.totalItems);
             const counterToAdd = maxItems[0].idx;
-            const newCounters = structuredClone(counters);
-            newCounters[counterToAdd].customers.push({
-                id: uuid(),
-                noOfItems: waitingCustomerItems,
-                entryTime: Date.now()
+            return counters.map((counter,idx) => {
+                if(counterToAdd !== idx) {
+                    return counter;
+                }
+                return {
+                    ...counter,
+                    customers: [
+                        ...counter.customers,
+                        {
+                            id: uuid(),
+                            noOfItems: waitingCustomerItems,
+                            entryTime: Date.now()
+                        }
+                    ]
+                }
             })
-            return newCounters;
         })
     }
 
@@ -100,7 +122,12 @@ const Checkout = () => {
     }
     return (
         <div className="checkout">
-            <div className="checkoutEntry">
+            <form
+                className="checkoutEntry"
+                onSubmit={(e)=>{
+                    e.preventDefault();
+                    addCustomerToQueue(waitingCustomer as number)}
+                }>
                 <input
                     type="number"
                     min={1}
@@ -109,11 +136,10 @@ const Checkout = () => {
                 />
                 <button
                     disabled={!waitingCustomer}
-                    onClick={()=>addCustomerToQueue(waitingCustomer as number)}
                 >
                     checkout
                 </button>
-            </div>
+            </form>
             <div className="counterArea">
                 {
                     counters.map(counter => (
