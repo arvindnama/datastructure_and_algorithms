@@ -19,17 +19,18 @@ function lengthOfLongestSubstring(s: string): number {
 
     let maxSubLen = 0;
     let start = 0;
-    const map: { [k in string]: number } = { [s[0]]: 1 };
+    const map: { [k in string]: number } = { [s[0]]: 0 };
     for (let i = 1; i < s.length; i++) {
-        map[s[i]] = map[s[i]] || 0;
-        if (map[s[i]] > 0) {
+        map[s[i]] = map[s[i]] >= 0 ? map[s[i]] : -1;
+        if (map[s[i]] > -1) {
             // there is a repeating char in the sub string.
             const subLen = i - start;
             maxSubLen = Math.max(maxSubLen, subLen);
             // reset start, to the previously found char after s[i]
-            start = s.indexOf(s[i], start) + 1;
+            // start = s.indexOf(s[i], start) + 1;
+            start = map[s[i]] + 1;
         }
-        map[s[i]]++;
+        map[s[i]] = i;
     }
     return maxSubLen || s.length;
 }
