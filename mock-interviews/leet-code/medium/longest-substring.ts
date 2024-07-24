@@ -17,24 +17,32 @@ function lengthOfLongestSubstring(s: string): number {
 
     // return maxSub.length;
 
-    let maxSubLen = 0;
-    let start = 0;
+    if (!s) return 0;
+
+    let [maxSubLen, start, i] = [0, 0, 1];
+
     const map: { [k in string]: number } = { [s[0]]: 0 };
-    for (let i = 1; i < s.length; i++) {
+    const updateMaxLen = () => {
+        // there is a repeating char in the sub string.
+        const subLen = i - start;
+        maxSubLen = Math.max(maxSubLen, subLen);
+    };
+    for (; i < s.length; i++) {
         map[s[i]] = map[s[i]] >= 0 ? map[s[i]] : -1;
-        if (map[s[i]] > -1) {
-            // there is a repeating char in the sub string.
-            const subLen = i - start;
-            maxSubLen = Math.max(maxSubLen, subLen);
+        if (map[s[i]] >= start) {
+            updateMaxLen();
             // reset start, to the previously found char after s[i]
             // start = s.indexOf(s[i], start) + 1;
             start = map[s[i]] + 1;
         }
         map[s[i]] = i;
     }
+    updateMaxLen();
     return maxSubLen || s.length;
 }
 
+console.log(lengthOfLongestSubstring('abba'));
+console.log(lengthOfLongestSubstring('aab'));
 console.log(lengthOfLongestSubstring('abcabcbb'));
 console.log(lengthOfLongestSubstring('bbbbbbb'));
 console.log(lengthOfLongestSubstring('pwwkew'));
