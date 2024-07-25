@@ -1,6 +1,7 @@
 
 Following needs a revisit
 
+Easy
 
 [] mock-interviews/leet-code/easy/linked-list-intersection.ts
 
@@ -18,3 +19,9 @@ Following needs a revisit
 
 [] mock-interviews/leet-code/easy/repeated-sub-pattern.ts
 [] mock-interviews/leet-code/easy/teemo-attacking.ts
+
+
+Medium
+
+[] mock-interviews/leet-code/medium/longest-substring.ts
+[] mock-interviews/leet-code/medium/longest-palindromic-substring.ts
