@@ -3,25 +3,25 @@ Following needs a revisit
 
 Easy
 
-[] mock-interviews/leet-code/easy/linked-list-intersection.ts
+[] mock-interviews/leet-code/easy/algorithms/linked-list-intersection.ts
 
-[] mock-interviews/leet-code/easy/binary-tree-in-order-traversal.ts (iterative)
-[] mock-interviews/leet-code/easy/binary-tree-in-per-order-traversal.ts
-[] mock-interviews/leet-code/easy/binary-tree-in-post-order-traversal.ts
+[] mock-interviews/leet-code/easy/algorithms/binary-tree-in-order-traversal.ts (iterative)
+[] mock-interviews/leet-code/easy/algorithms/binary-tree-in-per-order-traversal.ts
+[] mock-interviews/leet-code/easy/algorithms/binary-tree-in-post-order-traversal.ts
 
-[] mock-interviews/leet-code/easy/trees-count-nodes.ts
+[] mock-interviews/leet-code/easy/algorithms/trees-count-nodes.ts
 
 
-[] mock-interviews/leet-code/easy/count-bits.ts
-[] mock-interviews/leet-code/easy/is-perfect-sq.ts
-[] mock-interviews/leet-code/easy/binary-watch.ts
-[] mock-interviews/leet-code/easy/arrange-coints.ts
+[] mock-interviews/leet-code/easy/algorithms/count-bits.ts
+[] mock-interviews/leet-code/easy/algorithms/is-perfect-sq.ts
+[] mock-interviews/leet-code/easy/algorithms/binary-watch.ts
+[] mock-interviews/leet-code/easy/algorithms/arrange-coints.ts
 
-[] mock-interviews/leet-code/easy/repeated-sub-pattern.ts
+[] mock-interviews/leet-code/easy/algorithms/repeated-sub-pattern.ts
 [] mock-interviews/leet-code/easy/teemo-attacking.ts
 
 
 Medium
 
-[] mock-interviews/leet-code/medium/longest-substring.ts
-[] mock-interviews/leet-code/medium/longest-palindromic-substring.ts
+[] mock-interviews/leet-code/medium/algorithms/longest-substring.ts
+[] mock-interviews/leet-code/medium/algorithms/longest-palindromic-substring.ts
