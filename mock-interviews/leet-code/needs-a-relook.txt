@@ -25,3 +25,5 @@ Medium
 
 [] mock-interviews/leet-code/medium/algorithms/longest-substring.ts
 [] mock-interviews/leet-code/medium/algorithms/longest-palindromic-substring.ts
+
+[] (Timelimit exceeded) mock-interviews/leet-code/medium/js-frontend/min-cost-to-convert-string-I.ts
