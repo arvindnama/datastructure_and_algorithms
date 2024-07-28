@@ -79,3 +79,17 @@ export function printTree(root?: Nullable<TreeNode>) {
     }
     console.log(order);
 }
+
+export type JSONObj = { [key: string]: JSONValue };
+export type JSONValue =
+    | null
+    | boolean
+    | number
+    | string
+    | JSONValue[]
+    | JSONObj;
+export type ArrayType = { id: number } & Record<string, JSONValue>;
+
+export function isJSONObj(obj: JSONValue): obj is JSONObj {
+    return typeof obj == 'object';
+}

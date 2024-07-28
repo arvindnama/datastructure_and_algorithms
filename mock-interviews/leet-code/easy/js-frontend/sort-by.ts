@@ -4,13 +4,8 @@
 You may assume that fn will never duplicate numbers for a given array.
  */
 
-type JSONValue =
-    | null
-    | boolean
-    | number
-    | string
-    | JSONValue[]
-    | { [key: string]: JSONValue };
+import { JSONValue } from '../../../../models/leet-code.models';
+
 type Fn = (value: JSONValue) => number;
 
 function sortBy(arr: JSONValue[], fn: Fn): JSONValue[] {

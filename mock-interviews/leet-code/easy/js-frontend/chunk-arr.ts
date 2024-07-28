@@ -8,13 +8,8 @@ You may assume the array is the output of JSON.parse. In other words, it is vali
 Please solve it without using lodash's _.chunk function.
  */
 
-type JSONValue =
-    | null
-    | boolean
-    | number
-    | string
-    | JSONValue[]
-    | { [key: string]: JSONValue };
+import { JSONValue } from '../../../../models/leet-code.models';
+
 type Obj = Record<string, JSONValue> | Array<JSONValue>;
 
 function chunk(arr: Obj[], size: number): Obj[][] {

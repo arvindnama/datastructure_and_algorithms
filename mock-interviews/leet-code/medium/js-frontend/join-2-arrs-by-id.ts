@@ -11,14 +11,7 @@ If a key only exists in one object, that single key-value pair should be include
 If a key is included in both objects, the value in the object from arr2 should override the value from arr1.
  */
 
-type JSONValue =
-    | null
-    | boolean
-    | number
-    | string
-    | JSONValue[]
-    | { [key: string]: JSONValue };
-type ArrayType = { id: number } & Record<string, JSONValue>;
+import { ArrayType } from '../../../../models/leet-code.models';
 
 function join(arr1: ArrayType[], arr2: ArrayType[]): ArrayType[] {
     arr1.sort((a, b) => a.id - b.id);

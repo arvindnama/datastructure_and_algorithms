@@ -5,13 +5,8 @@ The first time the returned function is called, it should return the same result
 Every subsequent time it is called, it should return undefined.
  */
 
-type JSONValue =
-    | null
-    | boolean
-    | number
-    | string
-    | JSONValue[]
-    | { [key: string]: JSONValue };
+import { JSONValue } from '../../../../models/leet-code.models';
+
 type OnceFn = (...args: Array<JSONValue>) => JSONValue | undefined;
 
 function once(fn: (...args: Array<JSONValue>) => JSONValue): OnceFn {
