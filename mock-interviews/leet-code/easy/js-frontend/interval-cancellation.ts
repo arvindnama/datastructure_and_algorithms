@@ -7,13 +7,8 @@ setTimeout(cancelFn, cancelTimeMs)
 The function fn should be called with args immediately and then called again every t milliseconds until cancelFn is called at cancelTimeMs ms.
  */
 
-type JSONValue =
-    | null
-    | boolean
-    | number
-    | string
-    | JSONValue[]
-    | { [key: string]: JSONValue };
+import { JSONValue } from '../../../../models/leet-code.models';
+
 type Fn = (...args: JSONValue[]) => void;
 
 function cancellable(fn: Fn, args: JSONValue[], t: number): () => void {

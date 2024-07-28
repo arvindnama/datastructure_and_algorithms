@@ -1,10 +1,5 @@
-type JSONValue =
-    | null
-    | boolean
-    | number
-    | string
-    | JSONValue[]
-    | { [key: string]: JSONValue };
+import { JSONValue } from '../../../../models/leet-code.models';
+
 type Obj = Record<string, JSONValue> | JSONValue[];
 
 function isEmpty(obj: Obj): boolean {

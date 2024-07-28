@@ -6,13 +6,8 @@ A compact object is the same as the original object, except with keys containing
 You may assume the obj is the output of JSON.parse. In other words, it is valid JSON.
  */
 
-type JSONValue =
-    | null
-    | boolean
-    | number
-    | string
-    | JSONValue[]
-    | { [key: string]: JSONValue };
+import { JSONValue } from '../../../../models/leet-code.models';
+
 type Obj = Record<string, JSONValue> | Array<JSONValue>;
 
 function compactObject(obj: Obj): Obj {

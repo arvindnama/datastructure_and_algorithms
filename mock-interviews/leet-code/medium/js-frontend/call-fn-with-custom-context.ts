@@ -14,13 +14,7 @@ However, calling the function like tax.callPolyfill({item: "salad"}, 10, 0.1) wi
 Please solve this without using the built-in Function.call method.
  */
 
-type JSONValue =
-    | null
-    | boolean
-    | number
-    | string
-    | JSONValue[]
-    | { [key: string]: JSONValue };
+import { JSONValue } from '../../../../models/leet-code.models';
 
 declare global {
     interface Function {
