@@ -41,6 +41,8 @@ function cancellable<T>(
             } catch (e) {
                 // generator or cancelPromise can throw an error.
                 // send back to generator and end the generator
+                // if cancel Promise throws an error generator.thow will take the exception
+                // if generator throws an error , sending back to generator will be no-op as it is already done
                 next = generator.throw(e);
             }
         }
