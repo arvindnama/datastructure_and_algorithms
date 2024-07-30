@@ -37,5 +37,42 @@ function letterCombinations(digits: string): string[] {
     }, []);
 }
 
+function letterCombinations2(digits: string): string[] {
+    if (!digits) return [];
+    const keyMap: { [k in string]: string } = {
+        '2': 'abc',
+        '3': 'def',
+        '4': 'ghi',
+        '5': 'jkl',
+        '6': 'mno',
+        '7': 'pqrs',
+        '8': 'tuv',
+        '9': 'wxyz',
+    };
+    /**
+     * backtracking approach::
+     *  start with first digit pick the first letter and move to next digit
+     *  we continue till we reach end of all first letter of all digit
+     * then we back track to pick 2nd digit of last but one digit and 3rd digit
+     *  and so on.
+     */
+
+    const result: string[] = [];
+
+    const buildCombination = (digitIdx: number, partialCombo: string): void => {
+        if (digitIdx === digits.length) {
+            result.push(partialCombo);
+            return;
+        }
+
+        for (const letter of keyMap[digits[digitIdx]]) {
+            buildCombination(digitIdx + 1, partialCombo + letter);
+        }
+    };
+
+    buildCombination(0, '');
+    return result;
+}
+
 console.log(letterCombinations('23'));
-console.log(letterCombinations('2345'));
+console.log(letterCombinations2('2345'));
