@@ -27,6 +27,8 @@ Medium
 [] mock-interviews/leet-code/medium/algorithms/longest-palindromic-substring.ts
 
 [] (Timelimit exceeded) mock-interviews/leet-code/medium/js-frontend/min-cost-to-convert-string-I.ts
+[] mock-interviews/leet-code/medium/algorithms/3-sum.ts
 
 
+Hard
 []mock-interviews/leet-code/hard/design-cancallable-fn.ts
