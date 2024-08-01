@@ -4,7 +4,7 @@ const fibo = (n: number): number => {
 
     if (n === 0) return 0;
     if (n === 1) return 1;
-    if (map[n]) return map[n];
+    if (map[n]) return map[n] as number;
 
     return (map[n] = fibo(n - 1) + fibo(n - 2));
 };
