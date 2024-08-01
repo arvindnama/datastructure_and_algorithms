@@ -28,7 +28,7 @@ Medium
 
 [] (Timelimit exceeded) mock-interviews/leet-code/medium/js-frontend/min-cost-to-convert-string-I.ts
 [] mock-interviews/leet-code/medium/algorithms/3-sum.ts
-
+[] mock-interviews/leet-code/medium/algorithms/generate-parantheses.ts
 
 Hard
 []mock-interviews/leet-code/hard/design-cancallable-fn.ts
