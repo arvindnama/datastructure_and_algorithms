@@ -3,14 +3,14 @@
  * https://www.geeksforgeeks.org/longest-common-substring-space-optimized-dp-solution/?ref=lbp
  *     i
  *     G e e k s
- *j G  1
- *  e    2
- *  e      3
- *  k        4
- *  s           5
+ *j G  1 1 1 1 1
+ *  e  1 2
+ *  e  1   3
+ *  k  1     4
+ *  s  1        5
  *
  *
- * We maintain a matrix , of m * n where each cell represent the size of matting
+ * We maintain a matrix , of m * n where each cell represent the size of matching
  * substring until  0-i in x & 0-j y
  */
 
@@ -36,3 +36,4 @@ function LCSubStr(x: string, y: string, m: number, n: number): number {
 
 console.log(LCSubStr('GeeksforGeeks', 'GeeksQuiz', 13, 9));
 console.log(LCSubStr('abcdxyz', 'xyzabcd', 7, 7));
+console.log(LCSubStr('a', 'a', 1, 1));
