@@ -2,7 +2,7 @@ import {
     TreeNumNode,
     createTree,
     printTree,
-} from '../../../../models/tree.models';
+} from '../../../../../models/tree.models';
 
 function findKthLargestInBst(root: TreeNumNode, k: number): Nullable<number> {
     if (!root) return null;
