@@ -46,7 +46,7 @@ const leftRotate = (z: Nullable<TreeNumNode>): AvlNumTreeNode => {
 };
 
 const rightRotate = (z: Nullable<TreeNumNode>): AvlNumTreeNode => {
-     //      z
+    //      z
     //     / \
     //    y   t4
     //   / \
@@ -249,6 +249,9 @@ function deleteFromAvlTree(
 export class AvlTree {
     #root: Nullable<AvlNumTreeNode>;
 
+    public getRoot(): Nullable<AvlNumTreeNode> {
+        return this.#root;
+    }
     public insert(k: number) {
         this.#root = insertIntoAvl(this.#root, k);
     }
