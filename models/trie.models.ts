@@ -29,6 +29,7 @@ const navigateNode = (
     tempData: string,
     trieDataStore: string[]
 ) => {
+    if (!root) return;
     tempData = `${tempData}${delimiter}${root.val}`;
     if (root.isEnd) {
         trieDataStore.push(tempData);

@@ -90,10 +90,13 @@ For a given trie tree, we need to search if a string is present or not.
 
 Example: Search for the presence of dad in the trie DS
 
-step1: split dad into d,a,d
-step2: look up d under roots children.
-step3: if found recurse down the child with child node as root and search of remaining portion of the key.
-step4: if remaining portion of the string length is zero and child isEnd == true , then we have found the key.
+- step1: split dad into d,a,d
+
+- step2: look up d under roots children.
+
+- step3: if found recurse down the child with child node as root and search of remaining portion of the key.
+
+- step4: if remaining portion of the string length is zero and child isEnd == true , then we have found the key.
 
 ## Delete
 
@@ -104,9 +107,12 @@ step4: if remaining portion of the string length is zero and child isEnd == true
  for delete we need to take a bottoms up approach, i.e. we will need to first navigate
  to the end of the word and start deleting the nodes from there till up. 
 
- step1: navigate using dfs, when we reach `d` (isEnd = true) we will need to delete it (pass null back to the parent)
- step2: when parent receives a null , i.e. it a node was delete below it, we will to 
+ - step1: navigate using dfs, when we reach `d` (isEnd = true) we will need to delete it (pass null back to the parent)
+ 
+ - step2: when parent receives a null , i.e. it a node was delete below it, we will to 
+        
         step2.a: check if current node had only 1 child previously if yes this node becomes the new leaf and if so we need to delete this node as well and navigate up.
+        
         step2.b: if the current node has more than one child we need to stop the delete operation and return self.
 
 
