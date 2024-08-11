@@ -1,0 +1,27 @@
+.container{
+    position: relative;
+    box-shadow: 0px 1px 5px #000;
+}
+
+.container img {
+    user-select: none;
+}
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    opacity: 0.7;
+}
+
+.slider {
+    position: absolute;
+    top: 0;
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 10px;
+    height: 100%;
+    background-color: grey;
+    cursor: ew-resize;
+    transform: translate(-10px);
+}
