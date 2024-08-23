@@ -1,48 +1,68 @@
 import { Matrix } from '../../../models/matrix.models';
 
 const primsMst = (graph: Matrix) => {
+    /**
+     * Prims Algorithm : finds the minimum spanning tree.
+     *  Algo:
+     *      Start with any arbitrary vertex to be part of mst.
+     *      find all edges initiating from vertex in the mst so far
+     *      pick a edge which has min w and does not lead to a cycle.
+     *      include the edge into mst (other end of the edge into mst)
+     *      repeat till all vertices are in mst.
+     */
     const n = graph.length;
-    const mstSet = new Array(n).fill(false);
-    const parent = [];
-    const keys: number[] = new Array(n).fill(Number.MAX_VALUE);
+    const partOfMst = new Array(n).fill(false);
 
-    parent[0] = -1;
-    keys[0] = 0;
+    const edgesInMst: Array<{ v: number; w: number; parent: number }> =
+        new Array(n)
+            .fill(-1)
+            .map((_, v) => ({ v, w: Number.MAX_VALUE, parent: -1 }));
 
-    const pickMin = () => {
-        return Object.keys(mstSet)
-            .map((v) => ({ v: +v, isInMst: mstSet[+v] }))
-            .filter(({ isInMst }) => !isInMst)
+    const pickMin = (): number =>
+        Object.keys(partOfMst)
+            .map((v) => ({ v: +v, isPartOfMst: partOfMst[+v] }))
+            .filter(({ isPartOfMst }) => !isPartOfMst)
             .reduce(
                 (acc, cur) => {
-                    if (keys[cur.v] < acc.w) {
-                        return { w: keys[cur.v], v: cur.v };
-                    }
+                    if (edgesInMst[cur.v].w < acc.w)
+                        return { w: edgesInMst[cur.v].w, v: cur.v };
                     return acc;
                 },
                 { w: Number.MAX_VALUE, v: -1 }
             ).v;
-    };
 
-    for (let i = 0; i < n - 1; i++) {
-        // V-1 edges in Spanning tree.
-        const u = pickMin();
-        mstSet[u] = true;
+    const getAdjNodes = (u: number): number[] =>
+        graph[u]
+            .map((w, v) => ({ v, w }))
+            .filter(({ w }) => w > 0)
+            .map(({ v }) => v);
 
-        for (let v = 0; v < n; v++) {
-            if (graph[u][v] && !mstSet[v] && graph[u][v] < keys[v]) {
-                parent[v] = u;
-                keys[v] = graph[u][v];
-            }
-        }
+    edgesInMst[0].w = 0;
+    let u = pickMin();
+    while (u !== -1) {
+        // For all the adjNodes of u
+        // update mst if there edges u -> v are lower than
+        // other edges leading up to v.
+        partOfMst[u] = true;
+        getAdjNodes(u)
+            .filter((adjN) => !partOfMst[adjN])
+            .forEach((v) => {
+                if (graph[u][v] < (edgesInMst[v]?.w ?? Number.MAX_VALUE)) {
+                    // edge u-v has weight lower than
+                    // i -> v (i being an vertex already in mst)
+                    // hence update the mst map
+                    edgesInMst[v] = {
+                        v,
+                        w: graph[u][v],
+                        parent: u,
+                    };
+                }
+            });
+        u = pickMin();
     }
-
-    const mstEdges = [];
-    for (let i = 1; i < n; i++) {
-        mstEdges.push([`${parent[i]} --> ${i}`, graph[i][parent[i]]]);
-    }
-
-    console.log(mstEdges);
+    console.log(
+        edgesInMst.slice(1).map((e) => `${e.parent} --> ${e.v} : ${e.w}`)
+    );
 };
 
 primsMst([
