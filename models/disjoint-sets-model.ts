@@ -28,7 +28,7 @@ export class DisjointSets<T extends string | number> {
             this.#parent[reU] = reV;
         } else {
             this.#parent[reU] = reV;
-            this.#rank[reU]++;
+            this.#rank[reV]++;
         }
     }
 
