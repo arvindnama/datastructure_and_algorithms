@@ -37,7 +37,7 @@ const miniDisjointSet = () => {
             parent[rootU] = rootV;
         } else {
             parent[rootU] = rootV;
-            rank[rootU]++;
+            rank[rootV]++;
         }
     };
 
