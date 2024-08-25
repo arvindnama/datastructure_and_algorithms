@@ -28,7 +28,7 @@ const largestArea = (graph: Matrix): number => {
             const [nx, ny] = [x + px, y + py];
 
             if (canMove([nx, ny])) {
-                return traverse([nx, ny], area + 1);
+                area = traverse([nx, ny], area + 1);
             }
         }
         return area;
