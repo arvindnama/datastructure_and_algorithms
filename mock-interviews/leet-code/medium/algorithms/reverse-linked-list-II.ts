@@ -65,14 +65,12 @@ function reverseBetween(
         counter++;
     }
 
-    if (rPrev) {
-        /**
-         * now patch up other 2 ends
-         */
-        const rNext = r;
-        lPrev.next = rPrev;
-        l.next = rNext;
-    }
+    /**
+     * now patch up other 2 ends
+     */
+    const rNext = r;
+    lPrev.next = rPrev;
+    l.next = rNext;
 
     return dummy.next;
 }
