@@ -30,6 +30,7 @@ Medium
 [] mock-interviews/leet-code/medium/algorithms/3-sum.ts
 [] mock-interviews/leet-code/medium/algorithms/generate-parantheses.ts
 [] mock-interviews/leet-code/medium/algorithms/take-k-of-each-char-from-left-n-right.ts
+[] mock-interviews/leet-code/medium/algorithms/shifiting-letters-II.ts
 
 Hard
 [-]mock-interviews/leet-code/hard/design-cancallable-fn.ts
