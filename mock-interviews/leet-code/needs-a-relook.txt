@@ -29,8 +29,10 @@ Medium
 [] (Timelimit exceeded) mock-interviews/leet-code/medium/js-frontend/min-cost-to-convert-string-I.ts
 [] mock-interviews/leet-code/medium/algorithms/3-sum.ts
 [] mock-interviews/leet-code/medium/algorithms/generate-parantheses.ts
-[] mock-interviews/leet-code/medium/algorithms/take-k-of-each-char-from-left-n-right.ts
+[-] mock-interviews/leet-code/medium/algorithms/take-k-of-each-char-from-left-n-right.ts
 [] mock-interviews/leet-code/medium/algorithms/shifiting-letters-II.ts
+[] mock-interviews/leet-code/medium/algorithms/linked-list-binary-tree.ts
+[] mock-interviews/leet-code/medium/algorithms/longest-zig-zag.ts
 
 Hard
 [-]mock-interviews/leet-code/hard/design-cancallable-fn.ts
