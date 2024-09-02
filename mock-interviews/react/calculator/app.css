@@ -1,0 +1,35 @@
+.calculator{
+    margin: auto;
+    text-align: center;
+    width: 300px;
+    height: 500px;
+    border: 1px solid black;
+    border-radius: 0.5rem;
+    background-color: beige;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.display {
+    resize: none;
+    padding: 0.5rem;
+    margin: 0.5rem;
+    background-color: cornsilk;
+}
+
+.keypad {
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 20px;
+}
+
+.keypad .cell {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: gold;
+    text-align: center;
+    line-height: 50px;
+}
