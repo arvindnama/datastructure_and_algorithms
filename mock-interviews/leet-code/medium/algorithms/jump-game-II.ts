@@ -33,6 +33,7 @@ function jump(nums: number[]): number {
                 minJumps = Math.min(minJumps, traverse(idx + i, 1));
             }
         }
+
         return (cache[idx] = minJumps + count);
     };
     return traverse(0, 0);
