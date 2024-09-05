@@ -93,3 +93,13 @@ export type ArrayType = { id: number } & Record<string, JSONValue>;
 export function isJSONObj(obj: JSONValue): obj is JSONObj {
     return typeof obj == 'object';
 }
+
+export class N_AryTreeNode {
+    val: number;
+    children: N_AryTreeNode[];
+
+    constructor(val?: number, children?: N_AryTreeNode[]) {
+        this.val = val === undefined ? 0 : val;
+        this.children = children === undefined ? [] : children;
+    }
+}
