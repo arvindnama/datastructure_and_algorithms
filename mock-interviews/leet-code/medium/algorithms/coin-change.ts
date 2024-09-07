@@ -7,7 +7,6 @@ You may assume that you have an infinite number of each kind of coin.
  */
 
 function coinChange(coins: number[], amount: number): number {
-    const cache: { [key in string]: number } = {};
     const findNoOfCoins = (
         idx: number,
         amount: number,
@@ -16,8 +15,6 @@ function coinChange(coins: number[], amount: number): number {
         if (idx < 0 || amount < 0) return Number.MAX_VALUE;
         if (amount === 0) return coinsCount;
 
-        const key = `${idx}_${amount}`;
-        if (cache[key] !== undefined) return cache[key];
         const pickCoinCase = findNoOfCoins(
             idx,
             amount - coins[idx],
