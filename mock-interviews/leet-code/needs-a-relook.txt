@@ -33,7 +33,9 @@ Medium
 [] mock-interviews/leet-code/medium/algorithms/shifiting-letters-II.ts
 [] mock-interviews/leet-code/medium/algorithms/linked-list-binary-tree.ts
 [] mock-interviews/leet-code/medium/algorithms/longest-zig-zag.ts
-[] mock-interviews/leet-code/medium/algorithms/min-cost-for-tickets-tabulation.ts
+[-] mock-interviews/leet-code/medium/algorithms/min-cost-for-tickets-tabulation.ts
+[] mock-interviews/leet-code/medium/algorithms/binary-tree-distribute-coins.ts
+[] mock-interviews/leet-code/medium/algorithms/binary-tree-maximum-width-optimal-2.ts
 
 Hard
 [-]mock-interviews/leet-code/hard/design-cancallable-fn.ts
