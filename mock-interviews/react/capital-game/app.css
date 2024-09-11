@@ -1,0 +1,19 @@
+.item {
+    border: 1px solid #414141;
+    border-radius: 5px;
+    margin: 0.5rem;
+    padding: 0.5rem;
+    cursor: pointer;
+}
+
+.item-selected {
+    border-color: blue;
+}
+
+.item-success {
+    border-color: #66cc99
+}
+
+.item-error{
+    border-color: red;
+}
