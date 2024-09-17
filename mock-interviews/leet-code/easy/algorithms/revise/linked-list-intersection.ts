@@ -1,4 +1,4 @@
-import { ListNode } from '../../../../models/leet-code.models';
+import { ListNode } from '../../../../../models/leet-code.models';
 
 /**
  * Given the heads of two singly linked-lists headA and headB, return the node at which the two lists intersect. If the two linked lists have no intersection at all, return null.
@@ -9,47 +9,51 @@ function getIntersectionNode(
     headB: ListNode
 ): ListNode | null {
     /**
-     * pick one list (A) and create a loop
-     * on second list (B)  set two pointers
-     *   1. head
-     *   2. n nodes away from head ( n === length of list A)
+     * To find the point of intersection.
+     *  pick one of the list (list A) and create a loop.
+     *  create 2 pointers
+     *  ptr1 at start of list B
+     *  ptr2 n step ahead of start B (n being the length of list A)
      *
-     * move both pointers one step at a time .
-     * if they meet then that is the point of intersection
-     * if they never meet there is no intersection .
+     * if ptr2 cannot move n steps then there is no loop
      *
-     * reverse the temporary loop create at the beginning
+     * else start moving ptr1 & ptr2 one step at a time.
+     *  they :
+     *   1. either meet at point of intersection
+     *   2. either of ptr1 or ptr2 will become null that means there is no intersections
      */
 
-    let [tempA, tempB, countA] = [headA, headB, 1];
+    let ptr = headA;
+    let n = 1;
+    while (ptr.next) {
+        ptr = ptr.next;
+        n++;
+    }
+    const endHeadA = ptr;
+    ptr.next = headA;
 
-    const breakLoop = () => (tempA.next = null);
-    const createLoop = () => (tempA.next = headA);
+    let [ptr1, ptr2] = [headB, headB];
 
-    while (tempA.next) {
-        tempA = tempA.next;
-        countA++;
+    while (n > 0) {
+        if (!ptr2) return null; // reached end no intersection
+        ptr2 = ptr2.next as ListNode;
+        n--;
     }
 
-    createLoop();
-
-    while (tempB && countA) {
-        tempB = tempB.next as ListNode;
-        countA--;
-    }
-
-    while (headB !== tempB) {
-        if (!headB || !tempB) {
-            // reaches end i.e. no loop and hence no intersection.
-            breakLoop();
+    while (ptr1 !== ptr2) {
+        if (!ptr1 || !ptr2) {
+            // there is no intersection
+            // if there was a loop created ptr2 will never become null
+            endHeadA.next = null;
             return null;
         }
-        headB = headB.next as ListNode;
-        tempB = tempB.next as ListNode;
+        ptr1 = ptr1.next as ListNode;
+        ptr2 = ptr2.next as ListNode;
     }
 
-    breakLoop();
-    return headB;
+    endHeadA.next = null;
+
+    return ptr1;
 }
 
 let headC = new ListNode(8);

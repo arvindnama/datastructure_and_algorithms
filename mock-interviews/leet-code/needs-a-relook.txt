@@ -3,13 +3,13 @@ Following needs a revisit
 
 Easy
 
-[] mock-interviews/leet-code/easy/algorithms/linked-list-intersection.ts
+[-] mock-interviews/leet-code/easy/algorithms/linked-list-intersection.ts
 
-[] mock-interviews/leet-code/easy/algorithms/binary-tree-in-order-traversal.ts (iterative)
-[] mock-interviews/leet-code/easy/algorithms/binary-tree-in-per-order-traversal.ts
-[] mock-interviews/leet-code/easy/algorithms/binary-tree-in-post-order-traversal.ts
+[-] mock-interviews/leet-code/easy/algorithms/binary-tree-in-order-traversal.ts (iterative)
+[-] mock-interviews/leet-code/easy/algorithms/binary-tree-in-per-order-traversal.ts
+[-] mock-interviews/leet-code/easy/algorithms/binary-tree-in-post-order-traversal.ts
 
-[] mock-interviews/leet-code/easy/algorithms/trees-count-nodes.ts
+[-] mock-interviews/leet-code/easy/algorithms/trees-count-nodes.ts
 
 
 [] mock-interviews/leet-code/easy/algorithms/count-bits.ts
