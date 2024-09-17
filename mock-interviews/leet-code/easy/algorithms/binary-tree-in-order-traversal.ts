@@ -2,7 +2,7 @@
  * Given the root of a binary tree, return the inorder traversal of its nodes' values.
  */
 
-import { TreeNode, createTree } from '../../../models/leet-code.models';
+import { TreeNode, createTree } from '../../../../models/leet-code.models';
 
 function inorderTraversal(root: TreeNode | null): number[] {
     if (!root) return [];
