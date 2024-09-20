@@ -8,32 +8,41 @@ import {
     createList,
     ListNode,
     printList,
-} from '../../../../models/leet-code.models';
+} from '../../../../../models/leet-code.models';
 
 function addTwoNumbers(
     l1: ListNode | null,
     l2: ListNode | null
 ): ListNode | null {
-    const res = new ListNode();
-    let ptr = res;
+    /**
+     * 2->4->3
+     * 5->6->4
+     *
+     * 7->0->8
+     *
+     * 2->4
+     * 5->6->4
+     *
+     */
+
+    const dummy = new ListNode(0);
+    let ptr = dummy;
     let carry = 0;
-
     while (l1 || l2) {
-        const [v1, v2] = [l1?.val ?? 0, l2?.val ?? 0];
+        const d1 = l1?.val ?? 0;
+        const d2 = l2?.val ?? 0;
 
-        let val = carry + v1 + v2;
-        carry = Math.floor(val / 10);
-        val = val % 10;
+        const sum = carry + d1 + d2;
 
-        ptr.next = new ListNode(val);
-        l1 = l1?.next as ListNode;
-        l2 = l2?.next as ListNode;
+        ptr.next = new ListNode(sum % 10);
+        carry = Math.floor(sum / 10);
         ptr = ptr.next;
+        if (l1) l1 = l1.next;
+        if (l2) l2 = l2.next;
     }
-
     if (carry) ptr.next = new ListNode(carry);
 
-    return res.next;
+    return dummy.next;
 }
 
 let [l1, l2] = [createList([2, 4, 3]), createList([5, 6, 4])];
