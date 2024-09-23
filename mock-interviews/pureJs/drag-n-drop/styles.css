@@ -1,0 +1,19 @@
+
+.container {
+    background-color: grey;
+    padding: 1rem;
+    margin: 0.5rem;
+}
+
+p.draggable {
+    padding: 1rem;
+    background-color: white;
+}
+
+.draggable {
+    cursor: move;
+}
+
+p.dragged {
+    opacity: 0.5;
+}

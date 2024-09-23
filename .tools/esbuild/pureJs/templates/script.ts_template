@@ -1,3 +1,4 @@
+import './styles.css';
 
 const container = document.body.querySelector('.harness-container');
 
