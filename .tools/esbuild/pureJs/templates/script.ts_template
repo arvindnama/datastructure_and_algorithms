@@ -1,0 +1,13 @@
+
+const container = document.body.querySelector('.harness-container');
+
+if (container) {
+    container.innerHTML = `
+    <div>
+        Hello world
+    </div>
+`;
+}
+
+
+
