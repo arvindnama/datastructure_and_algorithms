@@ -8,51 +8,54 @@ interface ISimpleHeap {
     insert(n: number): void;
     removeTop(): number;
     print(): void;
+    size(): number;
 }
 
-const maxHeap = (size: number): ISimpleHeap => {
+export const minHeap = (size: number): ISimpleHeap => {
     const heap: number[] = [];
 
-    const fixPos = (n: number) => {
+    const heapifyBottomUp = (n: number) => {
         const parent = Math.floor((n - 1) / 2);
-        if (parent >= 0 && heap[parent] < heap[n]) {
+
+        if (parent >= 0 && heap[parent] > heap[n]) {
             [heap[parent], heap[n]] = [heap[n], heap[parent]];
-            fixPos(parent);
+            heapifyBottomUp(parent);
         }
     };
 
-    const heapify = (n: number) => {
-        const l = 2 * n + 1;
-        const r = 2 * n + 2;
-        let t = n;
-        if (l < heap.length && heap[t] < heap[l]) t = l;
-        if (r < heap.length && heap[t] < heap[r]) t = r;
+    const heapifyTopDown = (n: number) => {
+        const left = 2 * n + 1;
+        const right = 2 * n + 2;
 
-        if (t !== n) {
-            [heap[t], heap[n]] = [heap[n], heap[t]];
-            heapify(t);
+        let temp = n;
+        if (left < heap.length && heap[temp] > heap[left]) temp = left;
+        if (right < heap.length && heap[temp] > heap[right]) temp = right;
+
+        if (temp !== n) {
+            [heap[temp], heap[n]] = [heap[n], heap[temp]];
+            heapifyTopDown(temp);
         }
     };
+
     return {
-        print() {
-            console.log(heap);
-        },
-        insert(n: number) {
+        insert: (n) => {
             if (heap.length === size) throw 'no space';
             heap.push(n);
-            fixPos(heap.length - 1);
+            heapifyBottomUp(heap.length - 1);
         },
-        removeTop(): number {
-            const val = heap[0];
+        removeTop: () => {
+            const top = heap[0];
             heap[0] = heap[heap.length - 1];
-            heapify(0);
             heap.length--;
-            return val;
+            heapifyTopDown(0);
+            return top;
         },
+        print: () => console.log(heap),
+        size: () => size,
     };
 };
 
-const heap = maxHeap(3);
+const heap = minHeap(3);
 console.log('insert  3', heap.insert(3));
 heap.print();
 console.log('insert 10', heap.insert(10));
