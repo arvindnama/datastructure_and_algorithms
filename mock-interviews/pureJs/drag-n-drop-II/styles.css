@@ -1,0 +1,27 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    margin: 5em;
+    border: 2px solid black;
+    height: 50vh;
+    width: 25vh;
+}
+
+.card {
+    margin : 2em;
+    border: 2px solid red;
+}
+
+.card p {
+    margin : 1em;
+    height: 50px;
+    background-color: grey;
+    text-align: center;
+    vertical-align: middle;
+}
+
+
+.dragged {
+    opacity: 0.4;
+    cursor: move;
+}
