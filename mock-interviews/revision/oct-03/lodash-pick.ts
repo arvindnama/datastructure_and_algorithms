@@ -12,28 +12,37 @@ const pick = (
     obj: Record<string, unknown>,
     path?: string | string[]
 ): Record<string, unknown> => {
-    if(!obj) return {};
-    if(!Array.isArray(path)) path = [path || ''];
+    if (!obj) return obj;
+    if (!path) return obj;
+    if (!Array.isArray(path)) path = [path];
 
-   return path.reduce((res, cur) => {
-        const props = cur.split('.');
+    return path.reduce(
+        (res, curPath) => {
+            const subPaths = curPath.split('.');
 
-        if(props.length > 1 && typeof obj[props[0]] === 'object') {
-            const tempRes  = pick(
-                obj[props[0]] as Record<string,unknown>,
-                props.slice(1)
-            );
-            res[props[0]] = {
-                ...res[props[0]] as Record<string,unknown>,
-                ...tempRes,
+            if (subPaths.length === 1) {
+                if (obj[subPaths[0]] !== undefined) {
+                    res[subPaths[0]] = obj[subPaths[0]];
+                }
+            } else {
+                const temp = pick(
+                    obj[subPaths[0]] as Record<string, unknown>,
+                    subPaths.slice(1).join('.')
+                );
+                if (temp !== undefined) {
+                    res[subPaths[0]] = {
+                        ...(res[subPaths[0]] as Record<string, unknown>),
+                        ...temp,
+                    };
+                }
             }
-        }else res[props[0]] = obj[props[0]]
-
-        return res;
-   }, {} as Record<string,unknown>)
+            return res;
+        },
+        {} as Record<string, unknown>
+    );
 };
 
-const object = { a: 1, b: '2', c: { d: 3, e: {f:10} } };
+const object = { a: 1, b: '2', c: { h: 1, d: 3, e: { f: 10, g: 11 } } };
 
-console.log(object, ['a', 'c.d']);
-console.log(pick(object, ['a', 'c.d', 'c.d.e.f']));
+// console.log(object, ['a', 'c.d']);
+console.log(pick(object, ['a', 'c.d', 'c.h', 'c.e.g']));
