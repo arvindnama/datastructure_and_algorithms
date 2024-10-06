@@ -1,0 +1,28 @@
+.gql-sample {
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+    width: 50%
+}
+
+.continents-dropdown {
+    width: 20rem;
+}
+.country-container {
+    height: 500px;
+    overflow-y: auto;
+}
+
+.country-container div {
+    padding: 1rem;
+    border: 1px solid grey;
+    border-radius: 2px;
+}
+
+.country-container div:nth-child(2n) {
+    background-color: red;
+}
+
+.country-container div:nth-child(2n + 1) {
+    background-color: green;
+}
