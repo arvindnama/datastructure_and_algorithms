@@ -1,0 +1,13 @@
+# Where to get schema data
+schema:
+  - https://countries.trevorblades.com/
+# The client side queries to turn into services
+documents:
+  - mock-interviews/angular/gql-apollo/**/*.graphql
+# Where to output the services and the list of plugins
+generates:
+  ./mock-interviews/angular/gql-apollo/countries-gql.ts:
+    plugins:
+      - typescript
+      - typescript-operations
+      - typed-document-node

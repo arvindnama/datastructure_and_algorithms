@@ -1,0 +1,25 @@
+
+query continents {
+  continents {
+        code
+        name
+    }
+}
+query getCountries($code: ID!) {
+    continent (code: $code) {
+        countries {
+            states {
+                name
+                code
+                country{
+                    name
+                }
+            }
+            code
+            name
+            continent {
+                name
+            }
+        }
+    }
+}
